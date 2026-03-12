@@ -10,7 +10,7 @@ const FullWidthHero = () => {
     description: "The most powerful display components and internal parts engineered for perfection.",
     buttonText: "Shop Now",
     imageSrc: img, 
-    accentColor: "#2ea4d5"
+    accentColor: "#1D73BE"
   };
 
   return (
@@ -23,7 +23,7 @@ const FullWidthHero = () => {
           
           {/* LEFT COLUMN: Dynamic Text */}
           <div className="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left z-10">
-            <p className="text-[#2ea4d5] font-bold text-xs md:text-sm uppercase tracking-[0.3em] mb-4">
+            <p className="text-[#1D73BE] font-bold text-xs md:text-sm uppercase tracking-[0.3em] mb-4">
               {heroData.tagline}
             </p>
 
@@ -35,7 +35,7 @@ const FullWidthHero = () => {
               {heroData.description}
             </p>
 
-            <button className="bg-[#2ea4d5] text-white px-10 py-4 rounded-xl font-black text-xs md:text-sm uppercase tracking-widest transition-all duration-300 transform active:scale-95 shadow-lg shadow-blue-700/30">
+            <button className="bg-[#1D73BE] text-white px-10 py-4 rounded-xl font-black text-xs md:text-sm uppercase tracking-widest transition-all duration-300 transform active:scale-95 shadow-lg shadow-blue-700/30">
               {heroData.buttonText}
             </button>
           </div>
@@ -50,7 +50,7 @@ const FullWidthHero = () => {
                   className="w-full  rounded-3xl h-auto max-w-[500px] object-contain transition-transform duration-700 group-hover:scale-[1.03]"
                 />
               </div>
-              <div className="absolute -bottom-10 -right-10 w-60 h-60 bg-[#2ea4d5]/10 rounded-full blur-[80px] pointer-events-none group-hover:bg-[#2ea4d5]/20 transition-all duration-700" />
+              <div className="absolute -bottom-10 -right-10 w-60 h-60 bg-[#1D73BE]/10 rounded-full blur-[80px] pointer-events-none group-hover:bg-[#1D73BE]/20 transition-all duration-700" />
             </div>
           </div>
 

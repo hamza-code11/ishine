@@ -171,20 +171,20 @@
 //                     <div className="flex items-center justify-between gap-8">
 //                         {/* Logo */}
 //                         <Link
-//                             className="flex items-center gap-2 text-primary hover:opacity-90 transition-all min-w-max group"
+//                             className="flex items-center gap-2 text-[#1D73BE] hover:opacity-90 transition-all min-w-max group"
 //                             to="/"
 //                             onClick={closeMenu}
 //                         >
-//                             <div className="size-10 bg-primary group-hover:bg-slate-900 rounded-xl flex items-center justify-center text-white transition-colors">
+//                             <div className="size-10 bg-[#1D73BE] group-hover:bg-slate-900 rounded-xl flex items-center justify-center text-white transition-colors">
 //                                 <span className="material-symbols-outlined text-2xl">smartphone</span>
 //                             </div>
-//                             <h1 className="text-2xl font-black tracking-tight text-slate-900 group-hover:text-primary transition-colors">
+//                             <h1 className="text-2xl font-black tracking-tight text-slate-900 group-hover:text-[#1D73BE] transition-colors">
 //                                 iShine Wireless
 //                             </h1>
 //                         </Link>
 //                         {/* Search Bar */}
 //                         <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-2xl group">
-//                             <div className="w-full flex border-2 border-slate-100 rounded-2xl overflow-hidden transition-all focus-within:border-primary bg-slate-50">
+//                             <div className="w-full flex border-2 border-slate-100 rounded-2xl overflow-hidden transition-all focus-within:border-[#1D73BE] bg-slate-50">
 //                                 <input
 //                                     className="flex-1 bg-transparent py-3 px-6 text-sm outline-none border-none placeholder:text-slate-400 font-medium"
 //                                     placeholder="Search repair parts, tools, brands..."
@@ -192,31 +192,31 @@
 //                                     value={searchQuery}
 //                                     onChange={(e) => setSearchQuery(e.target.value)}
 //                                 />
-//                                 <button type="submit" className="bg-slate-900 hover:bg-primary text-white px-10 py-3 font-black uppercase text-xs transition-all tracking-widest active:scale-95">
+//                                 <button type="submit" className="bg-slate-900 hover:bg-[#1D73BE] text-white px-10 py-3 font-black uppercase text-xs transition-all tracking-widest active:scale-95">
 //                                     SEARCH
 //                                 </button>
 //                             </div>
 //                         </form>
 //                         {/* User Actions */}
 //                         <div className="flex items-center gap-6 text-slate-700">
-//                             <Link className="flex flex-col items-center gap-1 hover:text-primary transition-all group" to={user ? '/account' : '/login'} onClick={closeMenu}>
+//                             <Link className="flex flex-col items-center gap-1 hover:text-[#1D73BE] transition-all group" to={user ? '/account' : '/login'} onClick={closeMenu}>
 //                                 <div className="size-10 rounded-xl flex items-center justify-center group-hover:bg-slate-50 transition-colors">
 //                                     <span className="material-symbols-outlined text-2xl group-hover:fill-current">person</span>
 //                                 </div>
 //                                 <span className="text-[10px] font-black uppercase tracking-widest hidden lg:block">{user ? 'Account' : 'Login'}</span>
 //                             </Link>
-//                             <Link className="flex flex-col items-center gap-1 hover:text-primary transition-all group relative" to="/wishlist" onClick={closeMenu}>
+//                             <Link className="flex flex-col items-center gap-1 hover:text-[#1D73BE] transition-all group relative" to="/wishlist" onClick={closeMenu}>
 //                                 <div className="size-10 rounded-xl flex items-center justify-center group-hover:bg-slate-50 transition-colors">
 //                                     <span className="material-symbols-outlined text-2xl group-hover:fill-current">favorite</span>
 //                                 </div>
 //                                 <span className="text-[10px] font-black uppercase tracking-widest hidden lg:block">Wishlist</span>
 //                                 {wishlistCount > 0 && (
-//                                     <span className="absolute top-0 right-0 size-5 bg-primary text-white text-[10px] font-black rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
+//                                     <span className="absolute top-0 right-0 size-5 bg-[#1D73BE] text-white text-[10px] font-black rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
 //                                         {wishlistCount}
 //                                     </span>
 //                                 )}
 //                             </Link>
-//                             <Link className="flex flex-col items-center gap-1 hover:text-primary transition-all group relative" to="/cart" onClick={closeMenu}>
+//                             <Link className="flex flex-col items-center gap-1 hover:text-[#1D73BE] transition-all group relative" to="/cart" onClick={closeMenu}>
 //                                 <div className="size-10 rounded-xl flex items-center justify-center group-hover:bg-slate-50 transition-colors">
 //                                     <span className="material-symbols-outlined text-2xl group-hover:fill-current">shopping_cart</span>
 //                                 </div>
@@ -238,9 +238,9 @@
 //                     <nav className="flex items-center h-14">
 //                         <button
 //                             onClick={onToggleCategory}
-//                             className={`flex items-center gap-2 font-black uppercase tracking-widest text-xs transition-all mr-12 group ${categoryMenuOpen ? "text-primary" : "text-slate-800 hover:text-primary"}`}
+//                             className={`flex items-center gap-2 font-black uppercase tracking-widest text-xs transition-all mr-12 group ${categoryMenuOpen ? "text-[#1D73BE]" : "text-slate-800 hover:text-[#1D73BE]"}`}
 //                         >
-//                             <div className={`size-8 rounded-lg flex items-center justify-center transition-colors ${categoryMenuOpen ? 'bg-primary text-white' : 'bg-slate-50 group-hover:bg-primary group-hover:text-white'}`}>
+//                             <div className={`size-8 rounded-lg flex items-center justify-center transition-colors ${categoryMenuOpen ? 'bg-[#1D73BE] text-white' : 'bg-slate-50 group-hover:bg-[#1D73BE] group-hover:text-white'}`}>
 //                                 <span className="material-symbols-outlined text-lg">{categoryMenuOpen ? 'close' : 'menu'}</span>
 //                             </div>
 //                             Browse Categories
@@ -251,7 +251,7 @@
 //                                 <button
 //                                     key={item.key}
 //                                     onClick={() => handleTabClick(item.key)}
-//                                     className={`relative flex items-center px-5 h-full text-[11px] font-black uppercase tracking-widest transition-all border-b-2 whitespace-nowrap ${activeTab === item.key ? "text-primary border-primary bg-slate-50" : "text-slate-600 border-transparent hover:text-primary hover:bg-slate-50"}`}
+//                                     className={`relative flex items-center px-5 h-full text-[11px] font-black uppercase tracking-widest transition-all border-b-2 whitespace-nowrap ${activeTab === item.key ? "text-[#1D73BE] border-[#1D73BE] bg-slate-50" : "text-slate-600 border-transparent hover:text-[#1D73BE] hover:bg-slate-50"}`}
 //                                 >
 //                                     {item.badge && (
 //                                         <span className="absolute top-2 right-1 bg-green-500 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full z-10 shadow-sm">
@@ -276,7 +276,7 @@
 //                                         <button
 //                                             key={sub}
 //                                             onClick={() => setActiveSub(sub)}
-//                                             className={`w-full text-left px-8 py-4 text-[11px] font-black uppercase tracking-widest transition-all ${activeSub === sub ? "bg-white text-primary border-r-4 border-primary shadow-sm" : "text-slate-500 hover:bg-white/50"}`}
+//                                             className={`w-full text-left px-8 py-4 text-[11px] font-black uppercase tracking-widest transition-all ${activeSub === sub ? "bg-white text-[#1D73BE] border-r-4 border-[#1D73BE] shadow-sm" : "text-slate-500 hover:bg-white/50"}`}
 //                                         >
 //                                             {sub}
 //                                         </button>
@@ -286,7 +286,7 @@
 //                                 {/* Content Grid */}
 //                                 <div className="flex-1 p-12 overflow-y-auto bg-white">
 //                                     <div className="flex items-center gap-4 mb-10 pb-6 border-b border-slate-50">
-//                                         <div className="size-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+//                                         <div className="size-12 bg-[#1D73BE]/10 rounded-2xl flex items-center justify-center text-[#1D73BE]">
 //                                             <span className="material-symbols-outlined text-3xl">build_circle</span>
 //                                         </div>
 //                                         <div>
@@ -302,9 +302,9 @@
 //                                                 key={item}
 //                                                 to={`/shop?brand=${activeTab}&model=${item}`}
 //                                                 onClick={closeMenu}
-//                                                 className="text-[13px] text-slate-500 hover:text-primary transition-all font-bold uppercase tracking-tight flex items-center gap-2 group"
+//                                                 className="text-[13px] text-slate-500 hover:text-[#1D73BE] transition-all font-bold uppercase tracking-tight flex items-center gap-2 group"
 //                                             >
-//                                                 <span className="size-1.5 bg-slate-200 group-hover:bg-primary group-hover:scale-150 rounded-full transition-all"></span>
+//                                                 <span className="size-1.5 bg-slate-200 group-hover:bg-[#1D73BE] group-hover:scale-150 rounded-full transition-all"></span>
 //                                                 {item}
 //                                             </Link>
 //                                         ))}
@@ -320,7 +320,7 @@
 //             <form onSubmit={handleSearch} className="md:hidden p-4 bg-white border-b border-border-light">
 //                 <div className="relative w-full group">
 //                     <input
-//                         className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl py-2.5 px-4 pr-12 text-sm focus:border-primary outline-none transition-all font-medium"
+//                         className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl py-2.5 px-4 pr-12 text-sm focus:border-[#1D73BE] outline-none transition-all font-medium"
 //                         placeholder="Search products..."
 //                         type="text"
 //                         value={searchQuery}
@@ -432,15 +432,15 @@
 //             <div className="border-b border-gray-100">
 //                 <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-8">
 //                     <Link to="/" onClick={closeMenu} className="flex items-center gap-2">
-//                         <div className="bg-primary p-1.5 rounded-lg shadow-sm">
+//                         <div className="bg-[#1D73BE] p-1.5 rounded-lg shadow-sm">
 //                             <span className="material-symbols-outlined text-white text-3xl">smartphone</span>
 //                         </div>
 //                         <span className="text-2xl font-black text-slate-800 tracking-tighter uppercase">
-//                             ISHINE<span className="text-primary">WIRELESS</span>
+//                             ISHINE<span className="text-[#1D73BE]">WIRELESS</span>
 //                         </span>
 //                     </Link>
 //                     <div className="hidden md:flex flex-1 max-w-2xl relative">
-//                         <input className="w-full bg-gray-50 border border-gray-200 rounded-full py-2.5 px-6 text-sm outline-none focus:border-primary" placeholder="Search models..." />
+//                         <input className="w-full bg-gray-50 border border-gray-200 rounded-full py-2.5 px-6 text-sm outline-none focus:border-[#1D73BE]" placeholder="Search models..." />
 //                     </div>
 //                     {/* <div className="flex gap-5">
 //                         <span className="material-symbols-outlined text-slate-600 cursor-pointer">person</span>
@@ -462,7 +462,7 @@
 //                                 </span>
 //                             </div>
 //                             <div className="relative">
-//                                 <span className="material-symbols-outlined text-[24px] text-slate-800 group-hover:text-primary transition-colors">
+//                                 <span className="material-symbols-outlined text-[24px] text-slate-800 group-hover:text-[#1D73BE] transition-colors">
 //                                     person
 //                                 </span>
 //                             </div>
@@ -478,10 +478,10 @@
 //                                 to="/wishlist"
 //                                 className="p-2.5 rounded-xl hover:bg-gray-50 transition-all group relative"
 //                             >
-//                                 <span className="material-symbols-outlined text-[24px] text-slate-800 group-hover:text-primary transition-colors">
+//                                 <span className="material-symbols-outlined text-[24px] text-slate-800 group-hover:text-[#1D73BE] transition-colors">
 //                                     favorite
 //                                 </span>
-//                                 <span className="absolute top-1.5 right-1.5 bg-primary text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full ring-2 ring-white">
+//                                 <span className="absolute top-1.5 right-1.5 bg-[#1D73BE] text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full ring-2 ring-white">
 //                                     0
 //                                 </span>
 //                             </Link>
@@ -491,7 +491,7 @@
 //                                 to="/cart"
 //                                 className="p-2.5 rounded-xl hover:bg-gray-50 transition-all group relative"
 //                             >
-//                                 <span className="material-symbols-outlined text-[24px] text-slate-800 group-hover:text-primary transition-colors">
+//                                 <span className="material-symbols-outlined text-[24px] text-slate-800 group-hover:text-[#1D73BE] transition-colors">
 //                                     shopping_cart
 //                                 </span>
 //                                 <span className="absolute top-1.5 right-1.5 bg-slate-900 text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full ring-2 ring-white">
@@ -514,10 +514,10 @@
 //                             <button
 //                                 key={item.key}
 //                                 onMouseEnter={() => handleTabHover(item.key)}
-//                                 className={`px-4 h-full text-[12px] font-black uppercase transition-colors relative ${activeTab === item.key ? "text-primary" : "text-slate-800 hover:text-primary"}`}
+//                                 className={`px-4 h-full text-[12px] font-black uppercase transition-colors relative ${activeTab === item.key ? "text-[#1D73BE]" : "text-slate-800 hover:text-[#1D73BE]"}`}
 //                             >
 //                                 {item.label}
-//                                 <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-primary transition-transform duration-300 ${activeTab === item.key ? 'scale-x-100' : 'scale-x-0'}`}></span>
+//                                 <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#1D73BE] transition-transform duration-300 ${activeTab === item.key ? 'scale-x-100' : 'scale-x-0'}`}></span>
 //                             </button>
 //                         ))}
 //                     </nav>
@@ -535,7 +535,7 @@
 //                                 <div
 //                                     key={sub}
 //                                     onMouseEnter={() => setActiveSub(sub)}
-//                                     className={`px-8 py-3 text-[13px] font-black cursor-pointer flex items-center justify-between transition-all ${activeSub === sub ? "text-primary bg-white border-l-4 border-primary shadow-sm" : "text-slate-700 hover:text-primary"}`}
+//                                     className={`px-8 py-3 text-[13px] font-black cursor-pointer flex items-center justify-between transition-all ${activeSub === sub ? "text-[#1D73BE] bg-white border-l-4 border-[#1D73BE] shadow-sm" : "text-slate-700 hover:text-[#1D73BE]"}`}
 //                                 >
 //                                     {sub}
 //                                     <span className="material-symbols-outlined text-sm">chevron_right</span>
@@ -557,15 +557,15 @@
 //                                     {megaMenuData[activeTab].content["Overview"].map((section) => (
 //                                         <div
 //                                             key={section.title}
-//                                             className="bg-gray-50/50 border border-gray-100 rounded-2xl p-5 hover:border-primary/30 hover:shadow-md transition-all duration-300"
+//                                             className="bg-gray-50/50 border border-gray-100 rounded-2xl p-5 hover:border-[#1D73BE]/30 hover:shadow-md transition-all duration-300"
 //                                         >
-//                                             <h5 className="font-black text-slate-900 text-[14px] mb-4 border-l-4 border-primary pl-3 uppercase tracking-tight">
+//                                             <h5 className="font-black text-slate-900 text-[14px] mb-4 border-l-4 border-[#1D73BE] pl-3 uppercase tracking-tight">
 //                                                 {section.title}
 //                                             </h5>
 //                                             <ul className="space-y-3">
 //                                                 {section.items.slice(0, 3).map(item => (
-//                                                     <li key={item} className="text-[13px] text-slate-500 hover:text-primary cursor-pointer transition-all flex items-center gap-2 group">
-//                                                         <span className="w-1 h-1 bg-slate-300 rounded-full group-hover:bg-primary transition-colors"></span>
+//                                                     <li key={item} className="text-[13px] text-slate-500 hover:text-[#1D73BE] cursor-pointer transition-all flex items-center gap-2 group">
+//                                                         <span className="w-1 h-1 bg-slate-300 rounded-full group-hover:bg-[#1D73BE] transition-colors"></span>
 //                                                         {item}
 //                                                     </li>
 //                                                 ))}
@@ -574,7 +574,7 @@
 //                                             {section.items.length > 3 && (
 //                                                 <button
 //                                                     onClick={() => handleViewAllClick(section.title)}
-//                                                     className="w-full mt-4 pt-3 border-t border-gray-100 text-left text-[11px] font-black text-primary hover:text-slate-900 uppercase flex items-center justify-between group"
+//                                                     className="w-full mt-4 pt-3 border-t border-gray-100 text-left text-[11px] font-black text-[#1D73BE] hover:text-slate-900 uppercase flex items-center justify-between group"
 //                                                 >
 //                                                     View All Models
 //                                                     <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -591,9 +591,9 @@
 //                                             key={item}
 //                                             to={`/shop?brand=${activeTab}&model=${item}`}
 //                                             onClick={closeMenu}
-//                                             className="text-[13px] text-slate-500 hover:text-primary font-bold transition-all flex items-center gap-2 group"
+//                                             className="text-[13px] text-slate-500 hover:text-[#1D73BE] font-bold transition-all flex items-center gap-2 group"
 //                                         >
-//                                             <span className="w-1.5 h-1.5 bg-slate-300 rounded-full group-hover:bg-primary transition-colors"></span>
+//                                             <span className="w-1.5 h-1.5 bg-slate-300 rounded-full group-hover:bg-[#1D73BE] transition-colors"></span>
 //                                             {item}
 //                                         </Link>
 //                                     ))}
@@ -717,18 +717,18 @@ export default function Navbar({ onToggleCategory }) {
                     
                     {/* Logo Section */}
                     <Link to="/" onClick={closeMenu} className="flex items-center gap-2">
-                        <div className="bg-primary p-1.5 rounded-lg shadow-sm shrink-0">
+                        <div className="bg-[#1D73BE] p-1.5 rounded-lg shadow-sm shrink-0">
                             <span className="material-symbols-outlined text-white text-2xl md:text-3xl">smartphone</span>
                         </div>
                         {/* Hidden on small screens as requested */}
-                        <span className="hidden sm:block text-xl md:text-2xl font-black text-slate-800 tracking-tighter uppercase">
-                            ISHINE<span className="text-primary">WIRELESS</span>
+                        <span className="hidden sm:block text-xl md:text-2xl font-black text-slate-800  uppercase">
+                            ISHINE<span className="text-[#1D73BE]"> WIRELESS</span>
                         </span>
                     </Link>
 
                     {/* Search - Hidden on small screens */}
                     <div className="hidden md:flex flex-1 max-w-2xl relative mx-4">
-                        <input className="w-full bg-gray-50 border border-gray-200 rounded-full py-2.5 px-6 text-sm outline-none focus:border-primary" placeholder="Search models (e.g. iPhone 16 Pro)..." />
+                        <input className="w-full bg-gray-50 border border-gray-200 rounded-full py-2.5 px-6 text-sm outline-none focus:border-[#1D73BE]" placeholder="Search models (e.g. iPhone 16 Pro)..." />
                     </div>
 
                     {/* Action Icons */}
@@ -739,20 +739,20 @@ export default function Navbar({ onToggleCategory }) {
                                 <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-none mb-1">Account</span>
                                 <span className="text-[12px] text-slate-900 font-black tracking-tight leading-none uppercase">{user ? user.name.split(' ')[0] : 'Sign In'}</span>
                             </div>
-                            <span className="material-symbols-outlined text-[24px] text-slate-800 group-hover:text-primary transition-colors">person</span>
+                            <span className="material-symbols-outlined text-[24px] text-slate-800 group-hover:text-[#1D73BE] transition-colors">person</span>
                         </Link>
 
                         <div className="hidden md:block w-[1px] h-6 bg-gray-200 mx-1"></div>
 
                         {/* Wishlist - Hidden on small screens */}
                         <Link to="/wishlist" className="hidden md:flex p-2.5 rounded-xl hover:bg-gray-50 group relative">
-                            <span className="material-symbols-outlined text-[24px] text-slate-800 group-hover:text-primary">favorite</span>
-                            <span className="absolute top-1.5 right-1.5 bg-primary text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full ring-2 ring-white">0</span>
+                            <span className="material-symbols-outlined text-[24px] text-slate-800 group-hover:text-[#1D73BE]">favorite</span>
+                            <span className="absolute top-1.5 right-1.5 bg-[#1D73BE] text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full ring-2 ring-white">0</span>
                         </Link>
 
                         {/* Cart */}
                         <Link to="/cart" className="p-2.5 rounded-xl hover:bg-gray-50 group relative">
-                            <span className="material-symbols-outlined text-[24px] text-slate-800 group-hover:text-primary">shopping_cart</span>
+                            <span className="material-symbols-outlined text-[24px] text-slate-800 group-hover:text-[#1D73BE]">shopping_cart</span>
                             <span className="absolute top-1.5 right-1.5 bg-slate-900 text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full ring-2 ring-white">2</span>
                         </Link>
 
@@ -767,7 +767,7 @@ export default function Navbar({ onToggleCategory }) {
             {/* NAV BAR: Main Brands (Desktop) */}
             <div className="bg-white border-b border-gray-100 hidden md:block">
                 <div className="container mx-auto px-4 flex items-center h-12">
-                    <button onClick={onToggleCategory} className="flex items-center gap-2 bg-slate-900 text-white px-5 h-full text-[12px] font-bold uppercase mr-6 hover:bg-primary transition-colors">
+                    <button onClick={onToggleCategory} className="flex items-center gap-2 bg-slate-900 text-white px-5 h-full text-[12px] font-bold uppercase mr-6 hover:bg-[#1D73BE] transition-colors">
                         <span className="material-symbols-outlined text-lg">menu</span> accessories
                     </button>
                     <nav className="flex items-center h-full flex-1">
@@ -775,10 +775,10 @@ export default function Navbar({ onToggleCategory }) {
                             <button
                                 key={item.key}
                                 onMouseEnter={() => { setActiveTab(item.key); setActiveSub("Overview"); }}
-                                className={`px-4 h-full text-[12px] font-black uppercase transition-colors relative ${activeTab === item.key ? "text-primary" : "text-slate-800 hover:text-primary"}`}
+                                className={`px-4 h-full text-[12px] font-black uppercase transition-colors relative ${activeTab === item.key ? "text-[#1D73BE]" : "text-slate-800 hover:text-[#1D73BE]"}`}
                             >
                                 {item.label}
-                                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-primary transition-transform duration-300 ${activeTab === item.key ? 'scale-x-100' : 'scale-x-0'}`}></span>
+                                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#1D73BE] transition-transform duration-300 ${activeTab === item.key ? 'scale-x-100' : 'scale-x-0'}`}></span>
                             </button>
                         ))}
                     </nav>
@@ -795,7 +795,7 @@ export default function Navbar({ onToggleCategory }) {
                                 <div
                                     key={sub}
                                     onMouseEnter={() => setActiveSub(sub)}
-                                    className={`px-8 py-3 text-[13px] font-black cursor-pointer flex items-center justify-between transition-all ${activeSub === sub ? "text-primary bg-white border-l-4 border-primary shadow-sm" : "text-slate-700 hover:text-primary"}`}
+                                    className={`px-8 py-3 text-[13px] font-black cursor-pointer flex items-center justify-between transition-all ${activeSub === sub ? "text-[#1D73BE] bg-white border-l-4 border-[#1D73BE] shadow-sm" : "text-slate-700 hover:text-[#1D73BE]"}`}
                                 >
                                     {sub} <span className="material-symbols-outlined text-sm">chevron_right</span>
                                 </div>
@@ -805,7 +805,7 @@ export default function Navbar({ onToggleCategory }) {
                         {/* Content Area */}
                         <div className="w-3/4 p-10 bg-white">
                             <div className="mb-8 border-b border-gray-100 pb-4 flex justify-between items-end">
-                                <h4 className="text-xl font-black text-slate-900 uppercase italic tracking-tighter">
+                                <h4 className="text-xl font-black text-slate-900 uppercase">
                                     {activeSub === "Overview" ? `${activeTab} Category Overview` : `Shop ${activeSub}`}
                                 </h4>
                             </div>
@@ -813,20 +813,20 @@ export default function Navbar({ onToggleCategory }) {
                             {activeSub === "Overview" ? (
                                 <div className="grid grid-cols-3 gap-6">
                                     {megaMenuData[activeTab].content["Overview"].map((section) => (
-                                        <div key={section.title} className="bg-gray-50/50 border border-gray-100 rounded-2xl p-5 hover:border-primary/30 transition-all">
-                                            <h5 className="font-black text-slate-900 text-[14px] mb-4 border-l-4 border-primary pl-3 uppercase">{section.title}</h5>
+                                        <div key={section.title} className="bg-gray-50/50 border border-gray-100 rounded-2xl p-5 hover:border-[#1D73BE]/30 transition-all">
+                                            <h5 className="font-black text-slate-900 text-[14px] mb-4 border-l-4 border-[#1D73BE] pl-3 uppercase">{section.title}</h5>
                                             <ul className="space-y-3">
                                                 {section.items.map((item, idx) => {
                                                     const name = typeof item === 'object' ? item.name : item;
                                                     const isNew = typeof item === 'object' && item.isNew;
                                                     return (
-                                                        <li key={idx} className="text-[12px] text-slate-500 hover:text-primary cursor-pointer flex items-center justify-between group">
+                                                        <Link key={idx} to={`/shop?model=${name}`} onClick={closeMenu} className="text-[12px] text-slate-500 hover:text-[#1D73BE] cursor-pointer flex items-center justify-between group">
                                                             <span className="flex items-center gap-2">
-                                                                <span className="w-1 h-1 bg-slate-300 rounded-full group-hover:bg-primary"></span>
-                                                                {name}
-                                                            </span>
-                                                            {isNew && <span className="text-[8px] bg-primary text-white px-1 rounded font-bold animate-pulse">NEW</span>}
-                                                        </li>
+                                                                <span className="w-1 h-1 bg-slate-300 font-extrabold rounded-full group-hover:bg-[#000]"></span>
+                                                                  <span className="text-slate-500 font-bold text-[#111827]">{name}</span>
+                                                            </span> 
+                                                            {isNew && <span className="text-[8px] bg-[#1D73BE] text-white px-1 rounded font-bold animate-pulse">NEW</span>}
+                                                        </Link>
                                                     );
                                                 })}
                                             </ul>
@@ -839,12 +839,12 @@ export default function Navbar({ onToggleCategory }) {
                                         const name = typeof item === 'object' ? item.name : item;
                                         const isNew = typeof item === 'object' && item.isNew;
                                         return (
-                                            <Link key={idx} to={`/shop?model=${name}`} onClick={closeMenu} className="text-[13px] text-slate-500 hover:text-primary font-bold flex items-center justify-between group">
+                                            <Link key={idx} to={`/shop?model=${name}`} onClick={closeMenu} className="text-[13px] text-slate-500 hover:text-[#1D73BE] font-bold flex items-center justify-between group">
                                                 <span className="flex items-center gap-2">
-                                                    <span className="w-1.5 h-1.5 bg-slate-300 rounded-full group-hover:bg-primary"></span>
-                                                    {name}
-                                                </span>
-                                                {isNew && <span className="bg-primary text-white text-[9px] px-1.5 py-0.5 rounded font-black animate-pulse">NEW</span>}
+                                                    <span className="w-1.5 h-1.5 bg-slate-300 font-bold rounded-full group-hover:bg-[#000000]"></span>
+                                                    <span className="text-slate-500 font-bold text-[#111827]">{name}</span>
+                                                </span>  
+                                                {isNew && <span className="bg-[#1D73BE] text-white text-[9px] px-1.5 py-0.5 rounded font-black animate-pulse">NEW</span>}
                                             </Link>
                                         );
                                     })}
@@ -869,7 +869,7 @@ export default function Navbar({ onToggleCategory }) {
                                 {item.label}
                             </Link>
                         ))}
-                        <button onClick={onToggleCategory} className="w-full text-left py-3 px-4 text-primary font-black uppercase text-sm">
+                        <button onClick={onToggleCategory} className="w-full text-left py-3 px-4 text-[#1D73BE] font-black uppercase text-sm">
                             Accessories
                         </button>
                     </div>

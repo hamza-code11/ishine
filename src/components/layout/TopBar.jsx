@@ -21,6 +21,15 @@ export default function TopBar() {
 
                 <div className="flex items-center gap-4 text-slate-300 text-sm">
                     <Link
+                        to="/about"
+                        className="hidden sm:block hover:text-white transition-colors cursor-pointer"
+                    >
+                        About
+                    </Link>
+
+                    <span className="opacity-50">|</span>
+                    
+                    <Link
                         to="/track-order"
                         className="hidden sm:block hover:text-white transition-colors cursor-pointer"
                     >
@@ -30,7 +39,7 @@ export default function TopBar() {
                     <span className="opacity-50">|</span>
 
                     <Link
-                        to="/store-location"
+                        to="/contact"
                         className="hover:text-white transition-colors cursor-pointer"
                     >
                         Store Location

@@ -43,7 +43,7 @@ const DiscountSection = () => {
                 {/* Header */}
                 <div className="flex justify-between items-end mb-8">
                     <h2 className="text-2xl font-black text-[#1a3356] tracking-tight">Products With Discounts</h2>
-                    <a href="#" className="text-[#2ea4d5] font-black text-xs uppercase tracking-widest hover:underline">View All Offers</a>
+                    <a href="#" className="text-[#1D73BE] font-black text-xs uppercase tracking-widest hover:underline">View All Offers</a>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -80,7 +80,7 @@ const DiscountSection = () => {
                                     
                                     <div className="flex items-center justify-between">
                                         <div className="flex flex-col">
-                                            <span className="text-lg font-black text-[#2ea4d5] leading-none">${item.price.toFixed(2)}</span>
+                                            <span className="text-lg font-black text-[#1D73BE] leading-none">${item.price.toFixed(2)}</span>
                                             <span className="text-[10px] text-slate-300 line-through font-bold">${item.oldPrice.toFixed(2)}</span>
                                         </div>
                                         

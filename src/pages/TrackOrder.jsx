@@ -1,199 +1,197 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import TopBar from "../components/layout/TopBar";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
 
 export default function TrackOrder() {
-    const [showResult, setShowResult] = useState(false);
-    const [orderNumber, setOrderNumber] = useState("");
-    const [email, setEmail] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
 
-    const handleTrack = (e) => {
-        e.preventDefault();
-        if (orderNumber && email) {
-            setShowResult(true);
-        }
+    // Status mapping for the progress bar
+    const statusLevels = {
+        "Pending": 1,
+        "Processing": 2,
+        "Shipped": 3,
+        "Delivered": 4,
+        "Cancelled": 0
     };
 
-    const steps = [
-        { label: "Order Placed", date: "Jan 15, 2:30 PM", completed: true },
-        { label: "Processing", date: "Jan 15, 4:00 PM", completed: true },
-        { label: "Shipped", date: "Jan 16, 9:00 AM", detail: "FedEx Ground #123456789", completed: true },
-        { label: "Delivered", date: "Expected Jan 20", completed: false },
-    ];
+    const [orders] = useState([
+        {
+            id: "ISH-882391",
+            date: "March 10, 2026",
+            business: "Global Fix Electronics",
+            taxId: "TX-9920-A1",
+            total: 189.00,
+            isVerified: true,
+            status: "Processing", // Status add kiya gaya
+            products: ["iPhone 13 Pro Max OLED Screen x1", "Premium Li-Ion Battery x2"]
+        },
+        {
+            id: "ISH-445210",
+            date: "March 12, 2026",
+            business: "Global Fix Electronics",
+            taxId: "TX-9920-A1",
+            total: 350.00,
+            isVerified: false,
+            status: "Pending", // Status add kiya gaya
+            products: ["MacBook Pro Keyboard Replacement x1"]
+        }
+    ]);
+
+    const filteredOrders = orders.filter(order =>
+        order.id.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
-        <div className="min-h-screen bg-[#f8fafc] font-sans antialiased text-slate-900 py-12 lg:py-20">
-            <div className="max-w-[800px] mx-auto px-4 space-y-12">
-                {/* TOP SECTION: Search Form */}
-                <div className="bg-white rounded-[32px] shadow-xl shadow-slate-200/50 border border-slate-100 p-8 lg:p-12 text-center space-y-8 animate-in fade-in slide-in-from-top-10 duration-700">
-                    <div className="space-y-3">
-                        <h1 className="text-3xl lg:text-4xl font-black text-[#1a3a5c] tracking-tight">Track Your Order</h1>
-                        <p className="text-slate-500 font-medium">Enter your order details below to see the real-time status of your shipment.</p>
-                    </div>
+        <div className="flex flex-col min-h-screen bg-[#f8fafc] font-sans antialiased text-slate-900">
+            <TopBar />
+            <Navbar />
 
-                    <form onSubmit={handleTrack} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
-                        <div className="text-left space-y-1.5">
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Order Number</label>
+            <main className="flex-grow py-12">
+                <div className="max-w-[950px] mx-auto px-4 space-y-10">
+
+                    {/* SEARCH & HEADER */}
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-6 bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+                        <div className="text-left">
+                            <h1 className="text-2xl font-black text-[#1a3a5c] uppercase tracking-tight">Order History</h1>
+                            <p className="text-xs text-slate-500 font-bold">Track your inventory status and shipments</p>
+                        </div>
+                        <div className="relative w-full md:w-96">
+                            <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
                             <input
-                                required
                                 type="text"
-                                placeholder="e.g. IW-2025-8834"
-                                value={orderNumber}
-                                onChange={(e) => setOrderNumber(e.target.value)}
-                                className="w-full px-5 py-4 rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-primary focus:ring-primary/5 outline-none transition-all font-mono text-sm"
+                                placeholder="Search by Order ID..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-200 bg-slate-50 outline-none focus:bg-white focus:ring-4 focus:ring-blue-500/5 transition-all font-bold text-sm"
                             />
-                        </div>
-                        <div className="text-left space-y-1.5">
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Email Address</label>
-                            <input
-                                required
-                                type="email"
-                                placeholder="james@globalfix.com"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="w-full px-5 py-4 rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-primary focus:ring-primary focus:ring-primary/5 outline-none transition-all text-sm"
-                            />
-                        </div>
-                        <button type="submit" className="w-full bg-[#1a3a5c] hover:bg-[#122b46] text-white font-black py-4 rounded-2xl shadow-lg shadow-blue-900/10 transition-all active:scale-[0.98] uppercase tracking-wider text-sm">
-                            Track Order
-                        </button>
-                    </form>
-                </div>
-
-                {/* TRACKING RESULT */}
-                {showResult && (
-                    <div className="space-y-8 animate-in slide-in-from-bottom-10 duration-700">
-                        {/* Order Info Summary */}
-                        <div className="bg-[#1a3a5c] text-white rounded-[24px] p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl shadow-blue-900/10">
-                            <div className="flex items-center gap-4">
-                                <div className="size-12 rounded-xl bg-white/10 flex items-center justify-center">
-                                    <span className="material-symbols-outlined text-blue-400">inventory_2</span>
-                                </div>
-                                <div>
-                                    <p className="text-[10px] font-bold text-blue-300 uppercase tracking-widest">Order Number</p>
-                                    <p className="text-lg font-black tracking-tight">{orderNumber}</p>
-                                </div>
-                            </div>
-                            <div className="flex gap-8 text-sm">
-                                <div>
-                                    <p className="text-[10px] font-bold text-blue-300 uppercase tracking-widest">Date</p>
-                                    <p className="font-bold">Jan 15, 2025</p>
-                                </div>
-                                <div>
-                                    <p className="text-[10px] font-bold text-blue-300 uppercase tracking-widest">Items</p>
-                                    <p className="font-bold">3 Items</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* PROGRESS TRACKER */}
-                        <div className="bg-white rounded-[32px] border border-slate-100 p-8 shadow-sm">
-                            <div className="space-y-10">
-                                {steps.map((step, idx) => (
-                                    <div key={idx} className="flex gap-6 group relative">
-                                        {/* Line */}
-                                        {idx !== steps.length - 1 && (
-                                            <div className={`absolute left-[19px] top-10 w-0.5 h-10 ${step.completed ? "bg-green-500" : "bg-slate-100"}`}></div>
-                                        )}
-
-                                        <div className={`size-10 rounded-full flex items-center justify-center shrink-0 z-10 ${step.completed ? "bg-green-500 text-white" : "bg-slate-100 text-slate-300"}`}>
-                                            {step.completed ? (
-                                                <span className="material-symbols-outlined text-[20px] font-bold">check</span>
-                                            ) : (
-                                                <span className="material-symbols-outlined text-[20px]">schedule</span>
-                                            )}
-                                        </div>
-
-                                        <div className="flex-1 pb-2">
-                                            <div className="flex justify-between items-start mb-1">
-                                                <h4 className={`font-bold uppercase tracking-tight ${step.completed ? "text-slate-900" : "text-slate-400"}`}>
-                                                    {step.label}
-                                                </h4>
-                                                <span className="text-xs font-bold text-slate-400">{step.date}</span>
-                                            </div>
-                                            {step.detail && (
-                                                <p className="text-xs font-bold text-primary bg-primary-light inline-block px-2 py-1 rounded mt-1">
-                                                    {step.detail}
-                                                </p>
-                                            )}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* SHIPMENT DETAILS */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="bg-white rounded-[32px] border border-slate-100 p-8 shadow-sm space-y-6">
-                                <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Shipment Details</h3>
-                                <div className="space-y-4">
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-slate-500 font-medium">Carrier</span>
-                                        <span className="font-bold text-[#1a3a5c]">FedEx Ground</span>
-                                    </div>
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-slate-500 font-medium">Tracking Number</span>
-                                        <button className="font-bold text-primary hover:underline cursor-pointer">123456789</button>
-                                    </div>
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-slate-500 font-medium">Estimated Delivery</span>
-                                        <span className="font-bold text-green-600">January 20, 2025</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white rounded-[32px] border border-slate-100 p-8 shadow-sm space-y-6">
-                                <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Route Info</h3>
-                                <div className="space-y-4">
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-slate-500 font-medium">Ship From</span>
-                                        <span className="font-bold text-[#1a3a5c]">Dallas, TX</span>
-                                    </div>
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-slate-500 font-medium">Ship To</span>
-                                        <span className="font-bold text-[#1a3a5c]">Austin, TX</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* ITEMS IN ORDER */}
-                        <div className="bg-white rounded-[32px] border border-slate-100 overflow-hidden shadow-sm">
-                            <div className="px-8 py-6 border-b border-slate-50 bg-slate-50/50">
-                                <h3 className="text-xs font-black text-[#1a3a5c] uppercase tracking-[0.2em]">Items in this Package</h3>
-                            </div>
-                            <div className="p-8 space-y-6">
-                                {[
-                                    { name: "iPhone 13 Pro Max OLED Display Assembly", sku: "LCD-IP13PM-SO", qty: 2 },
-                                    { name: "Premium Li-Ion Battery for iPhone 13 Pro Max", sku: "BAT-IP13PM-PR", qty: 1 },
-                                ].map((item, idx) => (
-                                    <div key={idx} className="flex justify-between items-center gap-4">
-                                        <div className="space-y-1">
-                                            <p className="text-sm font-bold text-slate-800 uppercase leading-snug">{item.name}</p>
-                                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">SKU: {item.sku}</p>
-                                        </div>
-                                        <div className="text-right">
-                                            <span className="text-xs font-black text-slate-400">QTY</span>
-                                            <p className="font-black text-[#1a3a5c]">{item.qty}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* NEED HELP? */}
-                        <div className="bg-primary-light rounded-[32px] p-8 text-center space-y-4 border border-blue-100">
-                            <h4 className="text-lg font-bold text-[#1a3a5c]">Need help with this order?</h4>
-                            <p className="text-sm text-slate-500 px-8">Our support team is available Mon-Fri 8:00 AM - 7:00 PM CST to assist with any shipment issues.</p>
-                            <div className="pt-2">
-                                <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3 bg-white hover:bg-slate-50 text-primary font-bold rounded-xl border border-blue-100 transition-all shadow-sm">
-                                    <span className="material-symbols-outlined text-[18px]">support_agent</span>
-                                    Contact Support
-                                </Link>
-                            </div>
                         </div>
                     </div>
-                )}
-            </div>
+
+                    {/* ORDERS LIST */}
+                    <div className="space-y-8">
+                        {filteredOrders.length > 0 ? (
+                            filteredOrders.map((order) => {
+                                const currentLevel = statusLevels[order.status];
+
+                                return (
+                                    <div key={order.id} className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
+
+                                        {/* Top Bar: Order ID & Amount */}
+                                        <div className="p-6 flex flex-col md:flex-row justify-between items-center gap-4 bg-slate-50/50 border-b border-slate-100">
+                                            <div className="flex items-center gap-4">
+                                                <div className="size-10 rounded-xl bg-[#1a3a5c] text-white flex items-center justify-center">
+                                                    <span className="material-symbols-outlined text-sm">package_2</span>
+                                                </div>
+                                                <div>
+                                                    <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Order ID</p>
+                                                    <h3 className="text-md font-black text-[#1a3a5c]">#{order.id}</h3>
+                                                </div>
+                                            </div>
+
+                                            {/* Status Badge */}
+                                            <div className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest ${order.status === 'Cancelled' ? 'bg-red-100 text-red-600' :
+                                                order.status === 'Delivered' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'
+                                                }`}>
+                                                {order.status}
+                                            </div>
+                                        </div>
+
+                                        {/* Status Stepper (New Section) */}
+                                        <div className="px-8 pt-8">
+                                            <div className="flex justify-between items-center relative">
+                                                {/* Connecting Line */}
+                                                <div className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -translate-y-1/2 z-0"></div>
+                                                <div
+                                                    className="absolute top-1/2 left-0 h-0.5 bg-[#1a3a5c] -translate-y-1/2 z-0 transition-all duration-1000"
+                                                    style={{ width: `${order.status === 'Cancelled' ? 0 : (currentLevel - 1) * 33.33}%` }}
+                                                ></div>
+
+                                                {['Pending', 'Processing', 'Shipped', 'Delivered'].map((step, index) => (
+                                                    <div key={step} className="relative z-10 flex flex-col items-center gap-2 bg-white px-2">
+                                                        <div className={`size-4 rounded-full border-2 transition-colors duration-500 ${currentLevel > index ? 'bg-[#1a3a5c] border-[#1a3a5c]' : 'bg-white border-slate-200'
+                                                            }`}></div>
+                                                        <span className={`text-[9px] font-black uppercase tracking-tighter ${currentLevel > index ? 'text-[#1a3a5c]' : 'text-slate-400'}`}>
+                                                            {step}
+                                                        </span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Content Body */}
+                                        <div className="p-8 grid grid-cols-1 md:grid-cols-12 gap-8">
+                                            <div className="md:col-span-7 space-y-4">
+                                                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Order Items</p>
+                                                <div className="space-y-2">
+                                                    {order.products.map((product, index) => (
+                                                        <div key={index} className="flex items-center gap-3 text-xs font-bold text-slate-600 bg-slate-50/50 p-3 rounded-xl">
+                                                            <div className="size-1.5 bg-blue-400 rounded-full"></div>
+                                                            {product}
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            <div className="md:col-span-5 border-t md:border-t-0 md:border-l border-slate-100 pt-6 md:pt-0 md:pl-8 flex flex-col justify-center">
+                                                <div className="space-y-4">
+                                                    <div className="flex justify-between items-end">
+                                                        <div>
+                                                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Payable</p>
+                                                            <p className="text-2xl font-black text-[#1a3a5c]">${order.total.toFixed(2)}</p>
+                                                        </div>
+                                                    </div>
+
+                                                    {!order.isVerified ? (
+                                                        <div className="bg-amber-50 border-2 border-amber-200 p-5 rounded-[2rem] flex flex-col gap-3 relative overflow-hidden animate-pulse">
+                                                            {/* Subtle Background Icon */}
+                                                            <span className="material-symbols-outlined absolute -right-2 -bottom-2 text-amber-200/40 text-6xl rotate-12 pointer-events-none">
+                                                                gavel
+                                                            </span>
+
+                                                            <div className="flex items-center gap-3 relative z-10">
+                                                                <div className="size-8 rounded-full bg-amber-500 flex items-center justify-center text-white shadow-lg shadow-amber-500/20">
+                                                                    <span className="material-symbols-outlined text-sm font-bold">priority_high</span>
+                                                                </div>
+                                                                <h4 className="text-[11px] font-black text-amber-900 uppercase tracking-widest">Action Required: Admin Verification</h4>
+                                                            </div>
+
+                                                            <p className="text-[11px] text-amber-800 font-bold leading-relaxed relative z-10">
+                                                                Our team is currently <span className="underline decoration-amber-500/50 underline-offset-2">verifying your Reseller / Tax ID</span>. The payment button will be enabled once the administrator grants approval.
+                                                            </p>
+
+                                                            <div className="flex items-center gap-2 text-[9px] font-black text-amber-600/70 uppercase tracking-tighter relative z-10">
+                                                                <span className="size-1.5 bg-amber-500 rounded-full animate-ping"></span>
+                                                                Status: Reviewing Credentials
+                                                            </div>
+                                                        </div>
+                                                    ) : (
+                                                        <Link
+                                                            to="/Payment"
+                                                            state={{ order }}
+                                                            className="w-full bg-[#1a3a5c] hover:bg-[#0f253d] text-white font-black py-4 rounded-2xl text-[10px] uppercase tracking-widest transition-all shadow-lg flex items-center justify-center gap-2"
+                                                        >
+                                                            <span className="material-symbols-outlined text-sm">payment</span>
+                                                            Proceed to Checkout
+                                                        </Link>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        ) : (
+                            <div className="text-center py-20 bg-white rounded-[32px] border border-dashed border-slate-300">
+                                <span className="material-symbols-outlined text-6xl text-slate-200 mb-4">inventory</span>
+                                <h3 className="text-xl font-bold text-slate-400">No matching orders found</h3>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </main>
+            <Footer />
         </div>
     );
 }

@@ -12,10 +12,13 @@ import Checkout from './pages/Checkout';
 import MyAccount from './pages/MyAccount';
 import OrderConfirmation from './pages/OrderConfirmation';
 import About from './pages/About';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsAndConditions from './pages/TermsAndConditions';
 import Contact from './pages/Contact';
 import TrackOrder from './pages/TrackOrder';
 import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart';
+import Payment from './pages/Payment';
 
 import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -54,10 +57,15 @@ export default function App() {
           <Route path="/wholesale" element={<WholesalePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
-          <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
-          <Route path="/account" element={<ProtectedRoute><MyAccount /></ProtectedRoute>} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/Payment" element={<Payment />} />
+          <Route path="/account" element={<MyAccount />} />
+          {/* <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} /> */}
+          {/* <Route path="/account" element={<ProtectedRoute><MyAccount /></ProtectedRoute>} /> */}
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/order-confirmation" element={<ProtectedRoute><OrderConfirmation /></ProtectedRoute>} />
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+          <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/track-order" element={<TrackOrder />} />

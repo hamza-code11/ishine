@@ -1,192 +1,148 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import TopBar from "../components/layout/TopBar";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import toast from "react-hot-toast";
-import { toggleWishlist, addToCart } from "../utils/productHelpers";
 
 export default function Wishlist() {
-    const [items, setItems] = useState([]);
-    const [loading, setLoading] = useState(true);
+    // Dummy Data with Quantity
+    const [wishlistItems, setWishlistItems] = useState([
+        {
+            id: 1,
+            name: "iPhone 13 Pro Max OLED Screen",
+            sku: "LCD-IP13PM-PR",
+            price: 145.00,
+            qty: 1,
+            stock: "In Stock",
+            image: "https://via.placeholder.com/60" 
+        },
+        {
+            id: 2,
+            name: "Samsung S22 Ultra Charging Port",
+            sku: "CP-S22U-ORG",
+            price: 12.50,
+            qty: 1,
+            stock: "Low Stock",
+            image: "https://via.placeholder.com/60"
+        }
+    ]);
 
-    const loadWishlist = () => {
-        const saved = JSON.parse(localStorage.getItem('ishine_wishlist') || '[]');
-        setItems(saved);
-        setLoading(false);
+    // Quantity Handlers
+    const updateQty = (id, delta) => {
+        setWishlistItems(prev => prev.map(item => 
+            item.id === id ? { ...item, qty: Math.max(1, item.qty + delta) } : item
+        ));
     };
 
-    useEffect(() => {
-        loadWishlist();
-
-        const handleWishUpdate = () => loadWishlist();
-        window.addEventListener('wishlistUpdate', handleWishUpdate);
-        return () => window.removeEventListener('wishlistUpdate', handleWishUpdate);
-    }, []);
-
-    const handleRemove = (item) => {
-        toggleWishlist(item);
-    };
-
-    const clearAll = () => {
-        localStorage.setItem('ishine_wishlist', JSON.stringify([]));
-        window.dispatchEvent(new Event('wishlistUpdate'));
-        toast.success("Wishlist cleared");
-    };
-
-    const handleAddToCart = (item) => {
-        addToCart(item);
-    };
-
-    const handleAddAllToCart = () => {
-        items.forEach(item => addToCart(item, 1));
-        toast.success("All items added to cart!");
+    const removeItem = (id) => {
+        setWishlistItems(wishlistItems.filter(item => item.id !== id));
     };
 
     return (
-        <div className="min-h-screen bg-background-off flex flex-col">
+        <div className="flex flex-col min-h-screen bg-[#f8fafc] font-sans antialiased text-slate-900">
+            <TopBar />
             <Navbar />
 
-            <main className="flex-grow py-12 bg-[#fcfdfe]">
-                <div className="container mx-auto px-4">
-                    {/* Breadcrumb */}
-                    <nav className="mb-10 flex items-center gap-3 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
-                        <Link to="/" className="hover:text-primary transition-colors">Home</Link>
-                        <div className="size-1 bg-slate-200 rounded-full"></div>
-                        <span className="text-slate-900">Wishlist</span>
+            {/* BREADCRUMBS & TITLE */}
+            <div className="bg-white border-b border-slate-200 py-4">
+                <div className="max-w-6xl mx-auto px-6">
+                    <nav className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+                        <Link to="/" className="hover:text-[#1a3a5c] transition-colors">Home</Link>
+                        <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+                        <span className="text-[#1a3a5c]">Wishlist</span>
                     </nav>
-
-                    {/* Header */}
-                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6 bg-white p-8 rounded-[40px] border border-slate-100 shadow-sm relative overflow-hidden">
-                        <div className="flex items-center gap-6 relative z-10">
-                            <div className="size-16 bg-red-50 text-red-500 rounded-3xl flex items-center justify-center shadow-inner">
-                                <span className="material-symbols-outlined text-4xl">favorite</span>
-                            </div>
-                            <div>
-                                <h1 className="font-black text-4xl text-slate-900 uppercase tracking-tight">
-                                    My Wishlist
-                                </h1>
-                                <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mt-1">
-                                    {items.length} Component{items.length !== 1 ? 's' : ''} saved for later
-                                </p>
-                            </div>
-                        </div>
-
-                        {items.length > 0 && (
-                            <div className="flex items-center gap-6 relative z-10">
-                                <button
-                                    onClick={clearAll}
-                                    className="text-slate-400 hover:text-red-500 text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 group"
-                                >
-                                    <span className="material-symbols-outlined text-xl group-hover:rotate-90 transition-transform">close_small</span>
-                                    Clear Favorites
-                                </button>
-                                <button
-                                    onClick={handleAddAllToCart}
-                                    className="bg-slate-900 hover:bg-primary text-white px-10 py-5 rounded-[22px] font-black text-[11px] uppercase tracking-widest transition-all shadow-2xl active:scale-95 flex items-center gap-3"
-                                >
-                                    <span className="material-symbols-outlined text-xl">shopping_cart_checkout</span>
-                                    Add All to Cart
-                                </button>
-                            </div>
+                    <div className="flex items-center justify-between">
+                        <h1 className="text-xl font-black text-[#1a3a5c] flex items-center gap-2">
+                            My Wishlist <span className="text-sm font-medium text-slate-400">({wishlistItems.length})</span>
+                        </h1>
+                        {wishlistItems.length > 0 && (
+                             <button className="text-[11px] font-black uppercase tracking-widest text-red-500 hover:text-red-600">
+                                Clear All
+                             </button>
                         )}
-                        {/* Decorative BG */}
-                        <div className="absolute top-0 right-0 w-64 h-full bg-slate-50 opacity-10 skew-x-[-20deg] translate-x-32"></div>
                     </div>
+                </div>
+            </div>
 
-                    {loading ? (
-                        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
-                            {[...Array(5)].map((_, i) => (
-                                <div key={i} className="bg-white rounded-[40px] h-96 animate-pulse border border-slate-50" />
-                            ))}
+            <main className="flex-grow max-w-6xl mx-auto px-6 py-8 w-full">
+                {wishlistItems.length > 0 ? (
+                    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                        {/* Table Header */}
+                        <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3 bg-slate-50 border-b border-slate-200 text-[10px] font-black text-slate-400 uppercase tracking-[0.15em]">
+                            <div className="col-span-5">Product</div>
+                            <div className="col-span-2 text-center">Price</div>
+                            <div className="col-span-2 text-center">Quantity</div>
+                            <div className="col-span-3 text-right">Action</div>
                         </div>
-                    ) : items.length > 0 ? (
-                        <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-                            {items.map((item) => {
-                                const imgs = item.images ? (typeof item.images === 'string' ? JSON.parse(item.images) : item.images) : [];
-                                return (
-                                    <div
-                                        key={item.id}
-                                        className="bg-white rounded-[40px] border border-slate-100 overflow-hidden hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] hover:-translate-y-3 transition-all duration-500 relative flex flex-col group"
-                                    >
-                                        {/* Image Area */}
-                                        <div className="h-64 flex items-center justify-center relative p-8 bg-slate-50/30 group-hover:bg-white transition-colors duration-700">
-                                            <Link to={`/shop/${item.slug}`} className="w-full h-full flex items-center justify-center">
-                                                <img
-                                                    className="object-contain w-full h-full transition-transform duration-700 group-hover:scale-125"
-                                                    src={imgs[0] || "/placeholder.png"}
-                                                    alt={item.name}
-                                                />
-                                            </Link>
 
-                                            {/* Remove Button */}
-                                            <button
-                                                onClick={() => handleRemove(item)}
-                                                className="absolute top-6 right-6 size-10 bg-white shadow-2xl rounded-2xl flex items-center justify-center text-slate-300 hover:text-red-500 hover:rotate-90 transition-all duration-500 z-10 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0"
-                                            >
-                                                <span className="material-symbols-outlined text-xl">close</span>
-                                            </button>
-                                        </div>
-
-                                        {/* Card Body */}
-                                        <div className="p-8 flex flex-col flex-1">
-                                            <Link to={`/shop/${item.slug}`} className="flex-1">
-                                                <p className="text-[10px] text-primary uppercase tracking-[0.2em] font-black mb-3">
-                                                    {item.brand?.name || 'GENERIC'}
-                                                </p>
-                                                <h3 className="font-extrabold text-slate-800 text-sm leading-[1.3] mb-4 line-clamp-2 h-10 group-hover:text-primary transition-colors">
-                                                    {item.name}
-                                                </h3>
-
-                                                <div className="flex items-center mb-8">
-                                                    <div className="flex flex-col">
-                                                        <span className="text-slate-900 font-extrabold text-2xl tracking-tighter">
-                                                            ${parseFloat(item.retail_price || 0).toFixed(2)}
-                                                        </span>
-                                                        <span className="text-[9px] text-slate-400 font-black uppercase tracking-widest">Retail Rate</span>
-                                                    </div>
-                                                </div>
-                                            </Link>
-
-                                            {/* Actions */}
-                                            <div className="flex gap-3 mt-auto">
-                                                <button
-                                                    onClick={() => handleAddToCart(item)}
-                                                    className="w-full bg-slate-900 hover:bg-primary text-white text-[10px] font-black uppercase tracking-widest py-4 rounded-[20px] transition-all flex items-center justify-center gap-3 shadow-xl active:scale-95 group/btn"
-                                                >
-                                                    <span className="material-symbols-outlined text-xl group-hover/btn:rotate-12 transition-transform">add_shopping_cart</span>
-                                                    Move to Cart
-                                                </button>
+                        {/* Items */}
+                        <div className="divide-y divide-slate-100">
+                            {wishlistItems.map((item) => (
+                                <div key={item.id} className="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-4 items-center">
+                                    
+                                    {/* Product */}
+                                    <div className="col-span-5 flex items-center gap-4">
+                                        <img src={item.image} alt="" className="size-14 rounded-lg bg-slate-100 border border-slate-100 object-cover" />
+                                        <div>
+                                            <h3 className="text-sm font-bold text-slate-800 leading-tight">{item.name}</h3>
+                                            <div className="flex items-center gap-3 mt-1">
+                                                <span className="text-[10px] font-bold text-slate-400 uppercase">SKU: {item.sku}</span>
+                                                <span className={`text-[9px] font-black uppercase px-1.5 py-0.5 rounded ${item.stock === 'In Stock' ? 'bg-green-50 text-green-600' : 'bg-amber-50 text-amber-600'}`}>
+                                                    {item.stock}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-                                );
-                            })}
-                        </div>
-                    ) : (
-                        <div className="flex flex-col items-center justify-center py-32 bg-white rounded-[60px] border border-slate-50 shadow-sm mt-10 p-12 text-center overflow-hidden relative">
-                            <div className="relative z-10">
-                                <div className="size-32 bg-slate-50 rounded-[40px] flex items-center justify-center mb-10 text-slate-200 shadow-inner group transition-transform duration-700 hover:scale-110">
-                                    <span className="material-symbols-outlined text-7xl font-thin group-hover:text-red-100 group-hover:font-normal transition-all duration-700">
-                                        heart_broken
-                                    </span>
+
+                                    {/* Price */}
+                                    <div className="col-span-2 text-center">
+                                        <p className="text-sm font-black text-[#1a3a5c]">${item.price.toFixed(2)}</p>
+                                    </div>
+
+                                    {/* QUANTITY SELECTOR */}
+                                    <div className="col-span-2 flex justify-center">
+                                        <div className="flex items-center border border-slate-200 rounded-lg overflow-hidden h-9">
+                                            <button onClick={() => updateQty(item.id, -1)} className="px-2 hover:bg-slate-50 text-slate-500 transition-colors">-</button>
+                                            <span className="w-8 text-center text-xs font-bold border-x border-slate-200">{item.qty}</span>
+                                            <button onClick={() => updateQty(item.id, 1)} className="px-2 hover:bg-slate-50 text-slate-500 transition-colors">+</button>
+                                        </div>
+                                    </div>
+
+                                    {/* Actions */}
+                                    <div className="col-span-3 flex justify-end items-center gap-2">
+                                        <button className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-[#1a3a5c] hover:bg-[#122b46] text-white px-4 py-2 rounded-lg text-[11px] font-bold transition-all">
+                                            <span className="material-symbols-outlined text-[18px]">shopping_cart</span>
+                                            <span className="md:hidden lg:inline">Add to Cart</span>
+                                        </button>
+                                        <button 
+                                            onClick={() => removeItem(item.id)}
+                                            className="size-9 flex items-center justify-center text-slate-300 hover:text-red-500 border border-slate-100 rounded-lg transition-colors"
+                                        >
+                                            <span className="material-symbols-outlined text-[20px]">delete</span>
+                                        </button>
+                                    </div>
                                 </div>
-                                <h2 className="text-4xl font-black text-slate-900 mb-4 uppercase tracking-tight">Your heart list is empty</h2>
-                                <p className="text-slate-400 font-medium max-w-sm mb-12 leading-relaxed text-base">
-                                    Professional parts await. Start tagging items your business needs for rapid restoration and tech excellence.
-                                </p>
-                                <Link
-                                    to="/shop"
-                                    className="bg-primary hover:bg-slate-900 text-white px-12 py-5 rounded-[24px] font-black uppercase tracking-widest text-[11px] transition-all shadow-2xl active:scale-95 inline-flex items-center gap-3 group"
-                                >
-                                    Explore Catalogue
-                                    <span className="material-symbols-outlined text-xl group-hover:translate-x-2 transition-transform">arrow_right_alt</span>
-                                </Link>
-                            </div>
-                            {/* Decorative */}
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+                            ))}
                         </div>
-                    )}
-                </div>
+
+                        {/* Summary Footer */}
+                        <div className="p-4 bg-slate-50 border-t border-slate-200 flex justify-end items-center gap-6">
+                            <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                                Estimated Total: <span className="text-base font-black text-[#1a3a5c] ml-2">
+                                    ${wishlistItems.reduce((acc, item) => acc + (item.price * item.qty), 0).toFixed(2)}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="text-center py-20 bg-white rounded-2xl border border-dashed border-slate-200">
+                        <span className="material-symbols-outlined text-slate-200 text-5xl mb-3">heart_plus</span>
+                        <h2 className="text-lg font-bold text-slate-400">Your wishlist is empty</h2>
+                        <Link to="/" className="inline-block mt-4 bg-[#1a3a5c] text-white px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest">
+                            Continue Shopping
+                        </Link>
+                    </div>
+                )}
             </main>
 
             <Footer />

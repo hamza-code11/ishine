@@ -5,9 +5,9 @@ const getProductImage = (product) => {
     if (product.images && product.images.length > 0 && product.images[0]) {
         return product.images[0];
     }
-    const brandColors = { apple: '1a3356', samsung: '2ea4d5', motorola: 'e65c00', google: '4285F4' };
+    const brandColors = { apple: '1a3356', samsung: '1D73BE', motorola: 'e65c00', google: '4285F4' };
     const b = product.brand?.name?.toLowerCase() || '';
-    const color = Object.entries(brandColors).find(([k]) => b.includes(k))?.[1] || '2ea4d5';
+    const color = Object.entries(brandColors).find(([k]) => b.includes(k))?.[1] || '1D73BE';
     return `https://placehold.co/400x400/${color}/ffffff?text=${encodeURIComponent((product.name || '').substring(0, 15))}`;
 };
 
@@ -26,7 +26,7 @@ export default function ProductCard({ product }) {
             {/* Image Container */}
             <div className="relative bg-gradient-to-br from-slate-50 to-slate-100 aspect-square overflow-hidden">
                 <img
-                    src={imgError ? `https://placehold.co/400x400/2ea4d5/ffffff?text=iShine` : getProductImage(product)}
+                    src={imgError ? `https://placehold.co/400x400/1D73BE/ffffff?text=iShine` : getProductImage(product)}
                     alt={product.name}
                     onError={() => setImgError(true)}
                     className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"

@@ -240,7 +240,7 @@ export default function MyAccount() {
             <aside className="w-72 bg-[#1a3356] text-white hidden lg:flex flex-col border-r border-slate-800 shrink-0">
                 <div className="p-10 border-b border-white/5">
                     <div className="flex items-center gap-6">
-                        <div className="size-16 rounded-3xl bg-[#2ea4d5] flex items-center justify-center font-black text-2xl shadow-xl">
+                        <div className="size-16 rounded-3xl bg-[#1D73BE] flex items-center justify-center font-black text-2xl shadow-xl">
                             {user?.name?.charAt(0)?.toUpperCase()}
                         </div>
                         <div className="overflow-hidden">
@@ -259,7 +259,7 @@ export default function MyAccount() {
                             key={item.id}
                             onClick={() => setActiveTab(item.id)}
                             className={`flex items-center gap-3 px-5 py-3.5 rounded-2xl font-black uppercase text-[10px] tracking-[0.1em] transition-all w-full text-left ${activeTab === item.id
-                                ? "bg-[#2ea4d5] text-white shadow-xl shadow-blue-900/50"
+                                ? "bg-[#1D73BE] text-white shadow-xl shadow-blue-900/50"
                                 : "text-slate-400 hover:text-white hover:bg-white/5"
                                 }`}
                         >

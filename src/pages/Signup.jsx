@@ -53,7 +53,7 @@ export default function Signup() {
             <main className="flex-grow flex items-center justify-center bg-[#f8fafc] py-10 px-4">
                 <div className="w-full max-w-[420px] bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-8">
                     <div className="text-center mb-8">
-                        <h2 className="text-2xl font-bold text-[#1a3a5c]">Create Account</h2>
+                        <h2 className="text-2xl font-extrabold text-[#1a3a5c]">Create Account</h2>
                         <p className="text-slate-500 text-sm mt-1">Join us to start shopping</p>
                     </div>
 

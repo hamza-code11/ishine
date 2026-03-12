@@ -115,7 +115,7 @@ const HeroSection = ({ categoryMenuOpen }) => {
                             <Link
                                 to={staticBanners[currentBanner].link}
                                 className="inline-flex items-center gap-2 px-8 py-3.5 text-white font-black rounded-full text-xs uppercase tracking-[0.2em] transition-all active:scale-95 shadow-xl hover:bg-[#1a3356]"
-                                style={{ background: '#2ea4d5' }}
+                                style={{ background: '#1D73BE' }}
                             >
                                 Shop Now
                                 <span className="material-symbols-outlined text-sm">arrow_forward</span>
