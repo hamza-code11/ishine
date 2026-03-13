@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { apiFetch } from "../config/api";
-import { AuthContext } from "../context/AuthContext";
+import { apiFetch } from "../../config/api";
+import { AuthContext } from "../../context/AuthContext";
 import toast from 'react-hot-toast';
 
 export default function MyAccount() {

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import TopBar from "../components/layout/TopBar";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
-import ProductTabs from "../components/productDetailsPage/ProductTabs";
-import RelatedProducts from "../components/productDetailsPage/RelatedProducts";
+import TopBar from "../../components/layout/TopBar";
+import Navbar from "../../components/layout/Navbar";
+import Footer from "../../components/layout/Footer";
+import ProductTabs from "../../components/productDetailsPage/ProductTabs";
+import RelatedProducts from "../../components/productDetailsPage/RelatedProducts";
 
-import img1 from '../assets/products/01.webp';
+import img1 from '../../assets/products/01.webp';
 
 const ProductDetailPage = () => {
     const [quantity, setQuantity] = useState(1);

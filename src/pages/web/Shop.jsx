@@ -1,7 +1,7 @@
 // import { useState, useEffect, useContext } from "react";
 // import { Link, useSearchParams } from "react-router-dom";
-// import Navbar from "../components/layout/Navbar";
-// import Footer from "../components/layout/Footer";
+// import Navbar from "../../components/layout/Navbar";
+// import Footer from "../../components/layout/Footer";
 // import { apiFetch } from "../config/api";
 // import { AuthContext } from "../context/AuthContext";
 // import toast from 'react-hot-toast';
@@ -486,12 +486,12 @@
 
 
 import React from 'react';
-import Topbar from '../components/layout/TopBar';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
-import FilterSidebar from '../components/shop/FilterSidebar';
-import SortBar from '../components/shop/SortBar';
-import ProductGrid from '../components/shop/ProductGrid';
+import Topbar from '../../components/layout/TopBar';
+import Navbar from '../../components/layout/Navbar';
+import Footer from '../../components/layout/Footer';
+import FilterSidebar from '../../components/shop/FilterSidebar';
+import SortBar from '../../components/shop/SortBar';
+import ProductGrid from '../../components/shop/ProductGrid';
 
 const ShopPage = () => {
   return (

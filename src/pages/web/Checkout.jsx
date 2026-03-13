@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Redirect ke liye
-import TopBar from "../components/layout/TopBar";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
+import TopBar from "../../components/layout/TopBar";
+import Navbar from "../../components/layout/Navbar";
+import Footer from "../../components/layout/Footer";
 
 export default function Checkout() {
     const navigate = useNavigate();

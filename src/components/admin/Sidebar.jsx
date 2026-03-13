@@ -16,7 +16,13 @@ import {
     Tag,
     Truck,
     Percent,
-    Star
+    Star,
+    Layers,
+    GitMerge,
+    Box,
+    PlusCircle,
+    Edit3,
+    LayoutGrid,
 } from "lucide-react";
 
 const Sidebar = ({ isOpen, onClose, isCollapsed, onToggle }) => {
@@ -30,33 +36,65 @@ const Sidebar = ({ isOpen, onClose, isCollapsed, onToggle }) => {
             section: "Main",
             items: [
                 { path: "/admin", name: "Dashboard", icon: LayoutDashboard, end: true },
-                { path: "/admin/analytics", name: "Analytics", icon: BarChart3, badge: "New" },
+                // { path: "/admin/analytics", name: "Analytics", icon: BarChart3, badge: "New" },
             ]
         },
         {
             section: "Store",
             items: [
                 {
-                    name: "Products",
+                    name: "Brands",
                     icon: ShoppingBag,
-                    path: "/admin/products", // Add main path for products
+                    path: "brands",
                     submenu: [
-                        { path: "admin/products", name: "All Products", icon: Package, end: true },
-                        { path: "/admin/products/add", name: "Add Product", icon: Tag },
-                        { path: "/admin/products/categories", name: "Categories", icon: Star },
+                        { path: "brands", name: "All Brands", icon: LayoutGrid, end: true },
+                        { path: "brands/add", name: "Add Brand", icon: PlusCircle },
+                        { path: "brands/edit", name: "Edit Brand", icon: Edit3 },
                     ]
                 },
+                {
+                    name: "Categories",
+                    icon: Layers, // Professional icon for main layers
+                    path: "categories",
+                    submenu: [
+                        { path: "categories", name: "All Categories", icon: LayoutGrid, end: true },
+                        { path: "categories/add", name: "Add Category", icon: PlusCircle },
+                        { path: "categories/edit", name: "Edit Category", icon: Edit3 },
+                    ]
+                },
+                {
+                    name: "Sub-Categories",
+                    icon: GitMerge, // Better icon to show branch/hierarchy
+                    path: "subcategories",
+                    submenu: [
+                        { path: "subcategories", name: "All Sub-Categories", icon: LayoutGrid, end: true },
+                        { path: "subcategories/add", name: "Add Sub-Category", icon: PlusCircle },
+                        { path: "subcategories/edit", name: "Edit Sub-Category", icon: Edit3 },
+                    ]
+                },
+                {
+                    name: "Products",
+                    icon: Box, // Standard product icon
+                    path: "products",
+                    submenu: [
+                        { path: "products", name: "All Products", icon: Package, end: true },
+                        { path: "products/add", name: "Add Product", icon: PlusCircle },
+                        { path: "products/edit", name: "Edit Product", icon: Edit3 },
+                    ]
+                },
+
                 { path: "/admin/orders", name: "Orders", icon: ShoppingCart, badge: "12" },
                 { path: "/admin/customers", name: "Customers", icon: Users },
+                { path: "CmsManager", name: "CmsManager", icon: LayoutDashboard   },
             ]
         },
-        {
-            section: "Marketing",
-            items: [
-                { path: "/admin/coupons", name: "Coupons", icon: Percent },
-                { path: "/admin/shipping", name: "Shipping", icon: Truck },
-            ]
-        },
+        // {
+        //     section: "Marketing",
+        //     items: [
+        //         { path: "/admin/coupons", name: "Coupons", icon: Percent },
+        //         { path: "/admin/shipping", name: "Shipping", icon: Truck },
+        //     ]
+        // },
         {
             section: "Settings",
             items: [
@@ -67,15 +105,15 @@ const Sidebar = ({ isOpen, onClose, isCollapsed, onToggle }) => {
 
     const MenuItem = ({ item }) => {
         const location = useLocation();
-        
+
         // Check if any submenu item is active
-        const isSubmenuActive = item.submenu?.some(subItem => 
+        const isSubmenuActive = item.submenu?.some(subItem =>
             location.pathname === subItem.path || location.pathname.startsWith(subItem.path + '/')
         );
 
         if (item.submenu) {
             return (
-                <div className="mb-1">
+                <div className="mb-2">
                     <button
                         onClick={() => setExpanded(prev => ({ ...prev, [item.name]: !prev[item.name] }))}
                         className={`
@@ -92,9 +130,9 @@ const Sidebar = ({ isOpen, onClose, isCollapsed, onToggle }) => {
                             )}
                         </div>
                         {!isCollapsed && (
-                            <ChevronDown 
-                                size={16} 
-                                className={`transition-transform flex-shrink-0 ${expanded[item.name] ? 'rotate-180' : ''}`} 
+                            <ChevronDown
+                                size={16}
+                                className={`transition-transform flex-shrink-0 ${expanded[item.name] ? 'rotate-180' : ''}`}
                             />
                         )}
                     </button>
@@ -109,8 +147,8 @@ const Sidebar = ({ isOpen, onClose, isCollapsed, onToggle }) => {
                                     end={subItem.end}
                                     className={({ isActive }) => `
                                         flex items-center gap-3 px-3 py-2 text-sm rounded-lg mb-1
-                                        ${isActive 
-                                            ? 'text-blue-600 bg-blue-50 font-medium' 
+                                        ${isActive
+                                            ? 'text-blue-600 bg-blue-50 font-medium'
                                             : 'text-gray-500 hover:bg-gray-100'
                                         }
                                     `}
@@ -133,8 +171,8 @@ const Sidebar = ({ isOpen, onClose, isCollapsed, onToggle }) => {
                 className={({ isActive }) => `
                     flex items-center rounded-lg mb-1 transition-all
                     ${isCollapsed ? 'justify-center p-2.5 mx-auto w-10 h-10' : 'gap-3 px-3 py-2.5'}
-                    ${isActive 
-                        ? 'bg-blue-600 text-white shadow-md' 
+                    ${isActive
+                        ? 'bg-blue-600 text-white shadow-md'
                         : 'text-gray-600 hover:bg-gray-100'
                     }
                 `}
@@ -253,3 +291,14 @@ const Sidebar = ({ isOpen, onClose, isCollapsed, onToggle }) => {
 };
 
 export default Sidebar;
+
+
+
+
+
+
+
+
+
+
+

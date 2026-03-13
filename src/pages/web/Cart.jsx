@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import TopBar from "../components/layout/TopBar";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
+import TopBar from "../../components/layout/TopBar";
+import Navbar from "../../components/layout/Navbar";
+import Footer from "../../components/layout/Footer";
 
 export default function Cart() {
   // Dummy Cart Data

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
-import TopBar from "../components/layout/TopBar";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
+import TopBar from "../../components/layout/TopBar";
+import Navbar from "../../components/layout/Navbar";
+import Footer from "../../components/layout/Footer";
 
-import img4 from '../assets/products/01.webp';
+import img4 from '../../assets/products/01.webp';
 
 const ProductPage = () => {
     const [currentPage, setCurrentPage] = useState(1);

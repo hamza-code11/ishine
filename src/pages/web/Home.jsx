@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import TopBar from "../components/layout/TopBar";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
-import HeroSection from "../sections/HeroSection";
-import BrandsSection from "../sections/BrandsSection";
-import CategoryGrid from "../sections/CategoryGrid";
-import ProductCardSection from "../sections/ProductCardSection";
-import DiscountSection from "../sections/DiscountSection";
-import FullWidthHeroSection from "../sections/FullWidthHeroSection";
-import FeaturedProducts from "../sections/FeaturedProducts.jsx";
+import TopBar from "../../components/layout/TopBar";
+import Navbar from "../../components/layout/Navbar";
+import Footer from "../../components/layout/Footer";
+import HeroSection from "../../sections/HeroSection";
+import BrandsSection from "../../sections/BrandsSection";
+import CategoryGrid from "../../sections/CategoryGrid";
+import ProductCardSection from "../../sections/ProductCardSection";
+import DiscountSection from "../../sections/DiscountSection";
+import FullWidthHeroSection from "../../sections/FullWidthHeroSection";
+import FeaturedProducts from "../../sections/FeaturedProducts.jsx";
 
 export default function Home() {
   const [categoryMenuOpen, setCategoryMenuOpen] = useState(false);

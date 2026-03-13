@@ -1,31 +1,49 @@
 import React, { useContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, AuthContext } from './context/AuthContext';
-import Home from './pages/Home';
-import Shop from './pages/Shop';
-import ProductDetailPage from './pages/ProductDetailPage';
-import ProductPage from './pages/ProductPage';
-import WholesalePage from './pages/WholesalePage';
+import Home from './pages/web/Home';
+import Shop from './pages/web/Shop';
+import ProductDetailPage from './pages/web/ProductDetailPage';
+import ProductPage from './pages/web/ProductPage';
+import WholesalePage from './pages/web/WholesalePage';
 
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Checkout from './pages/Checkout';
-import MyAccount from './pages/MyAccount';
-import OrderConfirmation from './pages/OrderConfirmation';
-import About from './pages/About';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsAndConditions from './pages/TermsAndConditions';
-import Contact from './pages/Contact';
-import TrackOrder from './pages/TrackOrder';
-import Wishlist from './pages/Wishlist';
-import Cart from './pages/Cart';
-import Payment from './pages/Payment';
+import Login from './pages/web/Login';
+import Signup from './pages/web/Signup';
+import Checkout from './pages/web/Checkout';
+import MyAccount from './pages/web/MyAccount';
+import OrderConfirmation from './pages/web/OrderConfirmation';
+import About from './pages/web/About';
+import PrivacyPolicy from './pages/web/PrivacyPolicy';
+import TermsAndConditions from './pages/web/TermsAndConditions';
+import Contact from './pages/web/Contact';
+import TrackOrder from './pages/web/TrackOrder';
+import Wishlist from './pages/web/Wishlist';
+import Cart from './pages/web/Cart';
+import Payment from './pages/web/Payment';
 
 
 // Admin Pages 
 import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/Dashboard';
 import ProductCreate from './pages/admin/products/ProductCreate';
+
+import BrandCreate from './pages/admin/brands/BrandCreate';
+import BrandEdit from './pages/admin/brands/BrandEdit';
+import BrandsList from './pages/admin/brands/BrandsList';
+
+import CategoryCreate from './pages/admin/categories/CategoryCreate';
+import CategoryEdit from './pages/admin/categories/CategoryEdit';
+import CategoryList from './pages/admin/categories/CategoriesList';
+
+import SubCategoryCreate from './pages/admin/subcategories/SubCategoryCreate';
+import SubCategoryEdit from './pages/admin/subcategories/SubCategoryEdit';
+import SubCategoriesList from './pages/admin/subcategories/SubCategoriesList';
+
+import CustomerList from './pages/admin/customers/CustomerList';
+import CmsManager from './pages/admin/CmsManager/CmsManager';
+
+
+
 // import AdminProducts from './pages/admin/AdminProducts';
 // import AdminCategories from './pages/admin/AdminCategories';
 // import AdminBrands from './pages/admin/AdminBrands';
@@ -80,6 +98,25 @@ export default function App() {
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
             <Route path="products/add" element={<ProductCreate />} />
+
+
+            <Route path="brands/add" element={<BrandCreate />} />
+            <Route path="brands/edit" element={<BrandEdit />} />
+            <Route path="brands" element={<BrandsList />} />
+
+            <Route path="categories/add" element={<CategoryCreate />} />
+            <Route path="categories/edit" element={<CategoryEdit />} />
+            <Route path="categories" element={<CategoryList />} />
+
+            <Route path="subcategories/add" element={<SubCategoryCreate />} />
+            <Route path="subcategories/edit" element={<SubCategoryEdit />} />
+            <Route path="subcategories" element={<SubCategoriesList />} />
+
+            <Route path="Customers" element={<CustomerList />} />
+            <Route path="CmsManager" element={<CmsManager />} />
+
+
+
             {/* <Route path="categories" element={<AdminCategories />} />
             <Route path="brands" element={<AdminBrands />} />
             <Route path="banners" element={<AdminBanners />} />

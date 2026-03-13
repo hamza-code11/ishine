@@ -1,12 +1,12 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import { apiFetch } from "../config/api";
+import { AuthContext } from "../../context/AuthContext";
+import { apiFetch } from "../../config/api";
 import toast from 'react-hot-toast';
 import { IoMdMail, IoIosLock, IoMdPerson } from "react-icons/io";
-import TopBar from "../components/layout/TopBar";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
+import TopBar from "../../components/layout/TopBar";
+import Navbar from "../../components/layout/Navbar";
+import Footer from "../../components/layout/Footer";
 
 export default function Signup() {
     const navigate = useNavigate();
