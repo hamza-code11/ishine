@@ -1,6 +1,6 @@
 import React from 'react';
 
-import img from '../assets/category/480PX BY 300PX.jpg.jpeg';
+import img from '../assets/category/400px by 150px.png';
 
 const categories = [
     { id: 1, img: img },

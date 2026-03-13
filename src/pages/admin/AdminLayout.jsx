@@ -1,85 +1,109 @@
-import React, { useContext } from 'react';
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
-import { Toaster } from 'react-hot-toast';
+// import React, { useState, useEffect } from "react";
+// import Sidebar from "../../components/admin/Sidebar";
+// import Header from "../../components/admin/Header";
 
-export default function AdminLayout() {
-  const { user, setUser } = useContext(AuthContext);
-  const navigate = useNavigate();
+// const AdminLayout = ({ children }) => {
+//   const [sidebarOpen, setSidebarOpen] = useState(false);
+//   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+//     return localStorage.getItem('sidebarCollapsed') === 'true';
+//   });
 
-  const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/login');
-  };
+//   useEffect(() => {
+//     localStorage.setItem('sidebarCollapsed', sidebarCollapsed);
+//   }, [sidebarCollapsed]);
 
-  const menu = [
-    { name: 'Dashboard', path: '/admin', icon: 'dashboard' },
-    { name: 'Products', path: '/admin/products', icon: 'inventory_2' },
-    { name: 'Categories', path: '/admin/categories', icon: 'category' },
-    { name: 'Brands', path: '/admin/brands', icon: 'branding_watermark' },
-    { name: 'Banners', path: '/admin/banners', icon: 'view_carousel' },
-    { name: 'Menu Items', path: '/admin/menu', icon: 'menu_open' },
-    { name: 'Orders', path: '/admin/orders', icon: 'shopping_cart' },
-    { name: 'Users', path: '/admin/users', icon: 'group' },
-    { name: 'Settings', path: '/admin/settings', icon: 'settings' },
-  ];
+//   return (
+//     <div className="min-h-screen bg-gray-50">
+//       <Sidebar 
+//         isOpen={sidebarOpen}
+//         onClose={() => setSidebarOpen(false)}
+//         isCollapsed={sidebarCollapsed}
+//         onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+//       />
+      
+//       <div className={`transition-all duration-300 ${sidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'}`}>
+//         <Header 
+//           onMenuClick={() => setSidebarOpen(true)}
+//           onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
+//           isCollapsed={sidebarCollapsed}
+//         />
+        
+//         <main className="p-4 md:p-6">
+//           <div className="max-w-7xl mx-auto">
+//             {children}
+//           </div>
+//         </main>
+//       </div>
+
+//       {sidebarOpen && (
+//         <div 
+//           className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+//           onClick={() => setSidebarOpen(false)}
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default AdminLayout;
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from "react";
+import { Outlet } from "react-router-dom"; // Yahan import karein
+import Sidebar from "../../components/admin/Sidebar";
+import Header from "../../components/admin/Header";
+
+const AdminLayout = () => { // Remove {children} prop
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+    return localStorage.getItem('sidebarCollapsed') === 'true';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('sidebarCollapsed', sidebarCollapsed);
+  }, [sidebarCollapsed]);
 
   return (
-    <div className="flex h-screen bg-slate-50 font-sans">
-      <Toaster position="top-right" />
-      <aside className="w-64 bg-slate-900 text-white flex flex-col hidden md:flex">
-        <div className="p-6 border-b border-slate-800">
-          <h1 className="text-2xl font-bold flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary">admin_panel_settings</span>
-            Admin Panel
-          </h1>
-        </div>
-        <nav className="flex-1 overflow-y-auto py-4">
-          <ul className="space-y-1">
-            {menu.map(item => (
-              <li key={item.path}>
-                <NavLink 
-                  to={item.path} 
-                  end={item.path === '/admin'}
-                  className={({ isActive }) => `flex items-center gap-3 px-6 py-3 transition-colors ${isActive ? 'bg-primary text-white border-r-4 border-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
-                >
-                  <span className="material-symbols-outlined">{item.icon}</span>
-                  {item.name}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div className="p-4 border-t border-slate-800">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="size-10 rounded-full bg-primary flex items-center justify-center font-bold">
-              {user?.name?.charAt(0) || 'A'}
-            </div>
-            <div>
-              <p className="text-sm font-semibold">{user?.name || 'Admin User'}</p>
-              <p className="text-xs text-slate-400 truncate w-32">{user?.email}</p>
-            </div>
+    <div className="min-h-screen bg-gray-50">
+      <Sidebar 
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        isCollapsed={sidebarCollapsed}
+        onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+      />
+      
+      <div className={`transition-all duration-300 ${sidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'}`}>
+        <Header 
+          onMenuClick={() => setSidebarOpen(true)}
+          onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
+          isCollapsed={sidebarCollapsed}
+        />
+        
+        <main className="p-4 md:p-6">
+          <div className="max-w-7xl mx-auto">
+            <Outlet /> {/* Yahan Outlet use karein children ki jagah */}
           </div>
-          <button 
-            onClick={handleLogout}
-            className="w-full flex items-center justify-center gap-2 py-2 text-sm text-red-400 hover:bg-slate-800 rounded transition-colors"
-          >
-            <span className="material-symbols-outlined text-sm">logout</span>
-            Logout
-          </button>
-        </div>
-      </aside>
-      <main className="flex-1 flex flex-col overflow-hidden">
-        <header className="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-6 md:hidden">
-            <h1 className="text-xl font-bold">Admin Panel</h1>
-            <button onClick={handleLogout} className="text-red-500 material-symbols-outlined">logout</button>
-        </header>
-        <div className="flex-1 overflow-y-auto p-6 lg:p-10">
-          <Outlet />
-        </div>
-      </main>
+        </main>
+      </div>
+
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
     </div>
   );
-}
+};
+
+export default AdminLayout;

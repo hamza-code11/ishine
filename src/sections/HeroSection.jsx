@@ -100,7 +100,7 @@ const HeroSection = ({ categoryMenuOpen }) => {
                     {/* Content Overlay */}
                     <div className="relative z-10 flex items-end h-full min-h-[460px] px-8 md:px-14 pb-16 md:pb-20">
                         <div className="max-w-[450px]">
-                            {staticBanners[currentBanner].title && (
+                            {/* {staticBanners[currentBanner].title && (
                                 <h2
                                     className="text-3xl md:text-5xl font-black leading-[1.1] tracking-tighter mb-6 transition-all duration-700 transform"
                                     style={{
@@ -110,7 +110,7 @@ const HeroSection = ({ categoryMenuOpen }) => {
                                 >
                                     {staticBanners[currentBanner].title}
                                 </h2>
-                            )}
+                            )} */}
 
                             <Link
                                 to={staticBanners[currentBanner].link}

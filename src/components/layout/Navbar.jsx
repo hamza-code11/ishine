@@ -823,7 +823,7 @@ export default function Navbar({ onToggleCategory }) {
                                                         <Link key={idx} to={`/shop?model=${name}`} onClick={closeMenu} className="text-[12px] text-slate-500 hover:text-[#1D73BE] cursor-pointer flex items-center justify-between group">
                                                             <span className="flex items-center gap-2">
                                                                 <span className="w-1 h-1 bg-slate-300 font-extrabold rounded-full group-hover:bg-[#000]"></span>
-                                                                  <span className="text-slate-500 font-bold text-[#111827]">{name}</span>
+                                                                  <span className="text-slate-800 font-bold text-[#111827]">{name}</span>
                                                             </span> 
                                                             {isNew && <span className="text-[8px] bg-[#1D73BE] text-white px-1 rounded font-bold animate-pulse">NEW</span>}
                                                         </Link>
@@ -842,7 +842,7 @@ export default function Navbar({ onToggleCategory }) {
                                             <Link key={idx} to={`/shop?model=${name}`} onClick={closeMenu} className="text-[13px] text-slate-500 hover:text-[#1D73BE] font-bold flex items-center justify-between group">
                                                 <span className="flex items-center gap-2">
                                                     <span className="w-1.5 h-1.5 bg-slate-300 font-bold rounded-full group-hover:bg-[#000000]"></span>
-                                                    <span className="text-slate-500 font-bold text-[#111827]">{name}</span>
+                                                    <span className="text-slate-800 font-bold text-[#111827]">{name}</span>
                                                 </span>  
                                                 {isNew && <span className="bg-[#1D73BE] text-white text-[9px] px-1.5 py-0.5 rounded font-black animate-pulse">NEW</span>}
                                             </Link>
