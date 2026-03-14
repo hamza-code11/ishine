@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { 
-  PlusCircle, Search, Edit3, Trash2, Copy, Check, 
-  ChevronRight, ChevronLeft, ExternalLink, Layers,
-  FolderTree, Image as ImageIcon
+import { Link } from "react-router-dom";
+
+import {
+    PlusCircle, Search, Edit3, Trash2, Copy, Check,
+    ChevronRight, ChevronLeft, ExternalLink, Layers,
+    FolderTree, Image as ImageIcon
 } from "lucide-react";
 
 const CategoriesListPage = () => {
@@ -25,34 +27,37 @@ const CategoriesListPage = () => {
     return (
         <div className="min-h-screen bg-[#f8f9fa] font-sans p-2 md:p-4">
             <div className="max-w-7xl mx-auto space-y-3">
-                
+
                 {/* Header Section */}
                 <div className="bg-white rounded-xl border border-gray-200 px-4 py-3 md:px-5 md:py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
                     <div>
                         <nav className="flex items-center gap-1 text-[10px] text-gray-400 mb-0.5 uppercase font-bold tracking-widest">
-                            <span>Inventory</span>
+                            <span>ishine</span>
                             <ChevronRight size={10} />
                             <span className="text-blue-600">Categories</span>
                         </nav>
                         <h1 className="text-base md:text-lg font-black text-gray-900 tracking-tight uppercase flex items-center gap-2">
                             <Layers size={18} className="text-blue-600" />
-                            Category Manager
+                            All Categories 
                         </h1>
                     </div>
-                    <button className="w-full md:w-auto px-5 py-2.5 bg-blue-600 text-xs font-black text-white rounded-lg hover:bg-blue-700 shadow-md shadow-blue-100 flex items-center justify-center gap-2 transition-all active:scale-95 uppercase tracking-wider">
+                    <Link
+                        to="/admin/categories/add"
+                        className="w-full md:w-auto px-5 py-2.5 bg-blue-600 text-xs font-black text-white rounded-lg hover:bg-blue-700 shadow-md shadow-blue-100 flex items-center justify-center gap-2 transition-all active:scale-95 uppercase tracking-wider"
+                    >
                         <PlusCircle size={16} />
                         Add New Category
-                    </button>
+                    </Link>
                 </div>
 
                 {/* Main Content Box */}
                 <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                    
+
                     {/* Search & Filters */}
                     <div className="p-3 border-b border-gray-100 bg-gray-50/20">
                         <div className="relative max-w-xs">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
-                            <input 
+                            <input
                                 type="text"
                                 placeholder="Search categories..."
                                 className="w-full pl-9 pr-3 py-1.5 bg-white border border-gray-200 rounded-md text-xs outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 transition-all"
@@ -96,7 +101,7 @@ const CategoriesListPage = () => {
                                         <td className="px-4 py-3">
                                             <div className="flex items-center gap-1.5 group/copy">
                                                 <code className="text-[10px] font-bold text-blue-600 bg-blue-50/50 px-2 py-0.5 rounded">/{cat.slug}</code>
-                                                <button 
+                                                <button
                                                     onClick={() => handleCopy(cat.slug, cat.id)}
                                                     className={`p-1 rounded transition-all ${copiedId === cat.id ? 'text-green-500' : 'text-gray-300 hover:text-blue-500 opacity-0 group-hover/copy:opacity-100'}`}
                                                 >
@@ -110,17 +115,20 @@ const CategoriesListPage = () => {
                                         </td>
 
                                         <td className="px-4 py-3 text-center">
-                                            <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-tighter ${
-                                                cat.status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
-                                            }`}>
+                                            <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-tighter ${cat.status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
+                                                }`}>
                                                 {cat.status}
                                             </span>
                                         </td>
 
                                         <td className="px-4 py-3 text-right">
                                             <div className="flex items-center justify-end gap-1">
-                                                <button className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-all" title="Edit"><Edit3 size={14} /></button>
-                                                <button className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-all" title="View Store"><ExternalLink size={14} /></button>
+                                                <Link
+                                                    to={`/admin/categories/edit`}
+                                                    className="p-1.5 text-gray-400 hover:text-blue-600 transition-all"
+                                                >
+                                                    <Edit3 size={14} />
+                                                </Link>
                                                 <button className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-all" title="Delete"><Trash2 size={14} /></button>
                                             </div>
                                         </td>

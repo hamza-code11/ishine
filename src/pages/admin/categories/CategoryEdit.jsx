@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { 
-  Save, 
-  ChevronRight, 
-  Layers, 
-  Link as LinkIcon, 
-  Image as ImageIcon, 
-  UploadCloud,
-  X,
-  List,
-  RefreshCcw,
-  FolderTree,
-  Type
+import { Link } from "react-router-dom";
+
+import {
+    Save,
+    ChevronRight,
+    Layers,
+    Link as LinkIcon,
+    Image as ImageIcon,
+    UploadCloud,
+    X,
+    List,
+    RefreshCcw,
+    FolderTree,
+    Type
 } from "lucide-react";
 
 const generateSlug = (text) => {
@@ -41,15 +43,13 @@ const EditCategoryPage = () => {
     return (
         <div className="min-h-screen bg-[#f8f9fa] font-sans p-2 md:p-4">
             <div className="max-w-7xl mx-auto space-y-4">
-                
+
                 {/* Responsive Header Area */}
                 <div className="bg-white border border-gray-200 rounded-xl px-4 py-3 md:px-5 md:py-4 shadow-sm">
                     <div className="flex flex-row items-center justify-between gap-2">
                         <div className="flex flex-col min-w-0">
                             {/* Breadcrumbs */}
                             <nav className="flex items-center gap-1 text-[10px] text-gray-400 mb-0.5 uppercase font-bold tracking-widest overflow-hidden whitespace-nowrap">
-                                <span className="hidden sm:inline">Inventory</span>
-                                <ChevronRight size={10} className="hidden sm:inline" />
                                 <span className="hidden sm:inline">Categories</span>
                                 <ChevronRight size={10} className="hidden sm:inline" />
                                 <span className="text-blue-600 truncate">Edit Asset</span>
@@ -59,27 +59,29 @@ const EditCategoryPage = () => {
                                 Update Category
                             </h1>
                         </div>
-                        
-                        {/* Back to List */}
-                        <button className="flex-shrink-0 px-3 py-1.5 md:px-4 md:py-1.5 text-xs font-bold text-gray-600 bg-gray-50 hover:bg-gray-100 rounded-lg flex items-center gap-2 transition-all border border-gray-200">
+
+                        <Link
+                            to="/admin/categories"
+                            className="flex-shrink-0 px-3 py-1.5 md:px-4 md:py-1.5 text-xs font-bold text-gray-600 bg-gray-50 hover:bg-gray-100 rounded-lg flex items-center gap-2 transition-all border border-gray-200"
+                        >
                             <List size={14} />
                             <span className="hidden xs:inline">Show All</span>
-                        </button>
+                        </Link>
                     </div>
                 </div>
 
                 {/* Form Box */}
                 <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                     <div className="grid grid-cols-1 md:grid-cols-12">
-                        
+
                         {/* Left Side: Category Details */}
                         <div className="md:col-span-7 p-5 md:p-6 space-y-5">
                             {/* Category Name */}
                             <div>
                                 <label className={labelStyle}><Type size={13} /> Category Name</label>
-                                <input 
-                                    type="text" 
-                                    className={inputStyle} 
+                                <input
+                                    type="text"
+                                    className={inputStyle}
                                     value={categoryName}
                                     onChange={(e) => {
                                         setCategoryName(e.target.value);
@@ -91,7 +93,7 @@ const EditCategoryPage = () => {
                             {/* Parent Category Selection */}
                             <div>
                                 <label className={labelStyle}><FolderTree size={13} /> Parent Category</label>
-                                <select 
+                                <select
                                     className={`${inputStyle} appearance-none cursor-pointer font-medium`}
                                     value={parentCategory}
                                     onChange={(e) => setParentCategory(e.target.value)}
@@ -110,8 +112,8 @@ const EditCategoryPage = () => {
                                     <span className="bg-gray-50 border border-r-0 border-gray-300 px-2 md:px-3 py-2 rounded-l-lg text-[10px] md:text-[11px] text-gray-400 font-bold font-mono">
                                         /cat/
                                     </span>
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         className={`${inputStyle} rounded-l-none bg-gray-50/30 font-medium text-blue-600 text-xs md:text-sm`}
                                         value={slug}
                                         readOnly
@@ -133,7 +135,7 @@ const EditCategoryPage = () => {
                                 ) : (
                                     <div className="relative w-full h-full border border-gray-200 rounded-xl bg-white p-4 flex items-center justify-center group shadow-sm">
                                         <img src={imagePreview} alt="Preview" className="max-h-28 w-auto object-contain transition-opacity group-hover:opacity-40" />
-                                        
+
                                         {/* Edit Overlay */}
                                         <label className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer">
                                             <div className="bg-blue-600 text-white p-2.5 rounded-full shadow-xl transform scale-90 group-hover:scale-100 transition-transform">
@@ -142,7 +144,7 @@ const EditCategoryPage = () => {
                                             <input type="file" className="hidden" onChange={handleImageChange} accept="image/*" />
                                         </label>
 
-                                        <button 
+                                        <button
                                             onClick={() => setImagePreview(null)}
                                             className="absolute top-2 right-2 bg-white text-red-500 p-1.5 rounded-md shadow-sm hover:bg-red-50 transition-all border border-red-100 z-10"
                                         >

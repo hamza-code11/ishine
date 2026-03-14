@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { 
-  PlusCircle, Search, Edit3, Trash2, Copy, Check, 
-  ChevronRight, ChevronLeft, ExternalLink, Store
+import { Link } from "react-router-dom";
+
+import {
+    PlusCircle, Search, Edit3, Trash2, Copy, Check,
+    ChevronRight, ChevronLeft, ExternalLink, Store
 } from "lucide-react";
 
 const BrandsListPage = () => {
@@ -24,31 +26,33 @@ const BrandsListPage = () => {
     return (
         <div className="min-h-screen bg-[#f8f9fa] font-sans p-2 md:p-4">
             <div className="max-w-7xl mx-auto space-y-3">
-                
+
                 {/* Header */}
                 <div className="bg-white rounded-xl border border-gray-200 px-4 py-3 md:px-5 md:py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
                         <nav className="flex items-center gap-1 text-[10px] text-gray-400 mb-0.5 uppercase font-bold tracking-widest">
-                            <span>Inventory</span>
+                            <span>ishine</span>
                             <ChevronRight size={10} />
                             <span className="text-blue-600">Brands List</span>
                         </nav>
-                        <h1 className="text-base md:text-lg font-black text-gray-900 tracking-tight uppercase">Brand Directory</h1>
+                        <h1 className="text-base md:text-lg font-black text-gray-900 tracking-tight uppercase">All Brands</h1>
                     </div>
-                    <button className="w-full md:w-auto px-5 py-2.5 bg-blue-600 text-xs font-black text-white rounded-lg hover:bg-blue-700 shadow-md shadow-blue-100 flex items-center justify-center gap-2 transition-all active:scale-95 uppercase tracking-wider">
-                        <PlusCircle size={16} />
-                        Add New Brand
-                    </button>
+                    <Link to="/admin/brands/add">
+                        <button className="w-full md:w-auto px-5 py-2.5 bg-blue-600 text-xs font-black text-white rounded-lg hover:bg-blue-700 shadow-md shadow-blue-100 flex items-center justify-center gap-2 transition-all active:scale-95 uppercase tracking-wider">
+                            <PlusCircle size={16} />
+                            Add New Brand
+                        </button>
+                    </Link>
                 </div>
 
                 {/* Table Box */}
                 <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                    
+
                     {/* Compact Search */}
                     <div className="p-3 border-b border-gray-100">
                         <div className="relative max-w-xs">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
-                            <input 
+                            <input
                                 type="text"
                                 placeholder="Search..."
                                 className="w-full pl-9 pr-3 py-1.5 bg-gray-50 border border-gray-200 rounded-md text-xs outline-none focus:border-blue-500 transition-all"
@@ -84,7 +88,7 @@ const BrandsListPage = () => {
                                         <td className="px-4 py-2.5">
                                             <div className="flex items-center gap-1.5 group/copy">
                                                 <span className="text-[11px] font-medium text-gray-500 bg-gray-100 px-2 py-0.5 rounded italic">/{brand.slug}</span>
-                                                <button 
+                                                <button
                                                     onClick={() => handleCopy(brand.slug, brand.id)}
                                                     className={`p-1 rounded transition-all ${copiedId === brand.id ? 'text-green-500' : 'text-gray-300 hover:text-blue-500'}`}
                                                 >
@@ -96,17 +100,20 @@ const BrandsListPage = () => {
                                         <td className="px-4 py-2.5 text-center text-xs font-bold text-gray-600">{brand.products}</td>
 
                                         <td className="px-4 py-2.5 text-center">
-                                            <span className={`px-2 py-0.5 rounded-md text-[9px] font-black uppercase ${
-                                                brand.status === 'Active' ? 'bg-green-50 text-green-600' : 'bg-gray-50 text-gray-400'
-                                            }`}>
+                                            <span className={`px-2 py-0.5 rounded-md text-[9px] font-black uppercase ${brand.status === 'Active' ? 'bg-green-50 text-green-600' : 'bg-gray-50 text-gray-400'
+                                                }`}>
                                                 {brand.status}
                                             </span>
                                         </td>
 
                                         <td className="px-4 py-2.5 text-right">
                                             <div className="flex items-center justify-end gap-0.5">
-                                                <button className="p-1.5 text-gray-400 hover:text-blue-600 transition-all"><Edit3 size={14} /></button>
-                                                <button className="p-1.5 text-gray-400 hover:text-blue-600 transition-all"><ExternalLink size={14} /></button>
+                                                <Link
+                                                    to="/admin/brands/edit"
+                                                    className="p-1.5 text-gray-400 hover:text-blue-600 transition-all"
+                                                >
+                                                    <Edit3 size={14} />
+                                                </Link>
                                                 <button className="p-1.5 text-gray-400 hover:text-red-500 transition-all"><Trash2 size={14} /></button>
                                             </div>
                                         </td>

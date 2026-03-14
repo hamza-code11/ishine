@@ -204,9 +204,9 @@ const Sidebar = ({ isOpen, onClose, isCollapsed, onToggle }) => {
                 <div className="flex items-center justify-between p-4 border-b">
                     <div className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span className="text-white font-bold text-lg">S</span>
+                            <span className="text-white font-bold text-lg">I</span>
                         </div>
-                        <span className="font-bold text-gray-800">StoreHub</span>
+                        <span className="font-bold text-gray-800">ishine</span>
                     </div>
                     <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded flex-shrink-0">
                         <X size={20} />
@@ -242,9 +242,9 @@ const Sidebar = ({ isOpen, onClose, isCollapsed, onToggle }) => {
                     {!isCollapsed && (
                         <div className="flex items-center gap-2">
                             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <span className="text-white font-bold text-lg">S</span>
+                                <span className="text-white font-bold text-lg">i</span>
                             </div>
-                            <span className="font-bold text-gray-800">StoreHub</span>
+                            <span className="font-bold text-gray-800 text-xl">ishine</span>
                         </div>
                     )}
                     <button

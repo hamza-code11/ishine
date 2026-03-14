@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { 
-  Save, 
-  ChevronRight, 
-  Tag, 
-  Link as LinkIcon, 
-  Image as ImageIcon, 
-  UploadCloud,
-  X,
-  List,
-  RefreshCcw,
-  Trash2
+import { Link } from "react-router-dom";
+
+import {
+    Save,
+    ChevronRight,
+    Tag,
+    Link as LinkIcon,
+    Image as ImageIcon,
+    UploadCloud,
+    X,
+    List,
+    RefreshCcw,
+    Trash2
 } from "lucide-react";
 
 const generateSlug = (text) => {
@@ -39,7 +41,7 @@ const EditBrandPage = () => {
     return (
         <div className="min-h-screen bg-[#f8f9fa] font-sans p-2 md:p-4">
             <div className="max-w-7xl mx-auto space-y-4">
-                
+
                 {/* Responsive Header Area */}
                 <div className="bg-white border border-gray-200 rounded-xl px-4 py-3 md:px-5 md:py-4 shadow-sm">
                     <div className="flex flex-row items-center justify-between gap-2">
@@ -52,29 +54,32 @@ const EditBrandPage = () => {
                             </nav>
                             <h1 className="text-base md:text-lg font-black text-gray-900 tracking-tight uppercase truncate flex items-center gap-2">
                                 <RefreshCcw size={18} className="text-blue-500" />
-                                Update Brand Asset
+                                Update Brand 
                             </h1>
                         </div>
-                        
+
                         {/* Back to List Button */}
-                        <button className="flex-shrink-0 px-3 py-1.5 md:px-4 md:py-1.5 text-xs font-bold text-gray-600 bg-gray-50 hover:bg-gray-100 rounded-lg flex items-center gap-2 transition-all border border-gray-200">
+                        <Link
+                            to="/admin/brands"
+                            className="flex-shrink-0 px-3 py-1.5 md:px-4 md:py-1.5 text-xs font-bold text-gray-600 bg-gray-50 hover:bg-gray-100 rounded-lg flex items-center gap-2 transition-all border border-gray-200"
+                        >
                             <List size={14} />
                             <span className="hidden xs:inline">Show All</span>
-                        </button>
+                        </Link>
                     </div>
                 </div>
 
                 {/* Form Box */}
                 <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                     <div className="grid grid-cols-1 md:grid-cols-12">
-                        
+
                         {/* Left Side: Brand Details */}
                         <div className="md:col-span-7 p-5 md:p-6 space-y-5">
                             <div>
                                 <label className={labelStyle}><Tag size={13} /> Brand Name</label>
-                                <input 
-                                    type="text" 
-                                    className={inputStyle} 
+                                <input
+                                    type="text"
+                                    className={inputStyle}
                                     placeholder="e.g. Samsung"
                                     value={brandName}
                                     onChange={(e) => {
@@ -90,8 +95,8 @@ const EditBrandPage = () => {
                                     <span className="bg-gray-50 border border-r-0 border-gray-300 px-2 md:px-3 py-2 rounded-l-lg text-[10px] md:text-[11px] text-gray-400 font-medium font-mono">
                                         /brand/
                                     </span>
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         className={`${inputStyle} rounded-l-none bg-gray-50/30 font-medium text-blue-600 text-xs md:text-sm`}
                                         value={slug}
                                         readOnly
@@ -115,7 +120,7 @@ const EditBrandPage = () => {
                                 ) : (
                                     <div className="relative w-full h-full border border-gray-200 rounded-xl bg-white p-4 flex items-center justify-center group">
                                         <img src={logoPreview} alt="Preview" className="max-h-24 w-auto object-contain transition-opacity group-hover:opacity-50" />
-                                        
+
                                         {/* Hover Overlay for change */}
                                         <label className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer">
                                             <div className="bg-blue-600 text-white p-2 rounded-full shadow-lg">
@@ -124,7 +129,7 @@ const EditBrandPage = () => {
                                             <input type="file" className="hidden" onChange={handleLogoChange} accept="image/*" />
                                         </label>
 
-                                        <button 
+                                        <button
                                             onClick={() => setLogoPreview(null)}
                                             className="absolute top-2 right-2 bg-white text-red-500 p-1 rounded-md shadow-sm hover:bg-red-50 transition-all border border-red-100 z-10"
                                         >
@@ -143,7 +148,7 @@ const EditBrandPage = () => {
                         {/* Main Action: Save */}
                         <button className="w-full sm:w-auto px-10 py-2.5 bg-blue-600 text-sm font-bold text-white rounded-lg hover:bg-blue-700 shadow-md shadow-blue-100 flex items-center justify-center gap-2 transition-all active:scale-95">
                             <Save size={16} />
-                            Update Changes 
+                            Update Changes
                         </button>
                     </div>
                 </div>

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import { 
   Save, 
   ChevronRight, 
@@ -49,9 +51,7 @@ const EditSubCategoryPage = () => {
                             <nav className="flex items-center gap-1 text-[10px] text-gray-400 mb-0.5 uppercase font-bold tracking-widest overflow-hidden whitespace-nowrap">
                                 <span className="hidden sm:inline">Categories</span>
                                 <ChevronRight size={10} className="hidden sm:inline" />
-                                <span className="hidden sm:inline">{parent}</span>
-                                <ChevronRight size={10} className="hidden sm:inline" />
-                                <span className="text-blue-600 truncate">Modify Sub-Asset</span>
+                                <span className="text-blue-600 truncate">Update Sub-Category</span>
                             </nav>
                             <h1 className="text-base md:text-lg font-black text-gray-900 tracking-tight uppercase truncate flex items-center gap-2">
                                 <GitMerge size={18} className="text-blue-500 rotate-90" />
@@ -59,10 +59,13 @@ const EditSubCategoryPage = () => {
                             </h1>
                         </div>
                         
-                        <button className="flex-shrink-0 px-3 py-1.5 md:px-4 md:py-1.5 text-xs font-bold text-gray-600 bg-gray-50 hover:bg-gray-100 rounded-lg flex items-center gap-2 transition-all border border-gray-200">
+                        <Link
+                            to="/admin/subcategories"
+                            className="flex-shrink-0 px-3 py-1.5 md:px-4 md:py-1.5 text-xs font-bold text-gray-600 bg-gray-50 hover:bg-gray-100 rounded-lg flex items-center gap-2 transition-all border border-gray-200"
+                        >
                             <List size={14} />
-                            <span className="hidden xs:inline">Back to Index</span>
-                        </button>
+                            <span className="hidden xs:inline">Show All</span>
+                        </Link>
                     </div>
                 </div>
 

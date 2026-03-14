@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import { 
   PlusCircle, ChevronRight, Layers, Link as LinkIcon, 
   Image as ImageIcon, UploadCloud, X, List, GitGraph, Type
@@ -25,12 +27,16 @@ const AddSubCategoryPage = () => {
                         </nav>
                         <h1 className="text-lg font-black text-gray-900 uppercase flex items-center gap-2">
                             <GitGraph size={20} className="text-blue-600" />
-                            Create Sub-Asset
+                            Create New Sub-Category
                         </h1>
                     </div>
-                    <button className="px-4 py-2 text-xs font-bold text-blue-600 bg-blue-50 rounded-lg flex items-center gap-2 border border-blue-100">
-                        <List size={14} /> <span className="hidden sm:inline">View Tree</span>
-                    </button>
+                    <Link
+                            to="/admin/subcategories"
+                            className="flex-shrink-0 px-3 py-1.5 md:px-4 md:py-1.5 text-xs font-bold text-gray-600 bg-gray-50 hover:bg-gray-100 rounded-lg flex items-center gap-2 transition-all border border-gray-200"
+                        >
+                            <List size={14} />
+                            <span className="hidden xs:inline">Show All</span>
+                        </Link>
                 </div>
 
                 {/* Form */}
